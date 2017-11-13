@@ -76,7 +76,7 @@ Vagrant.configure("2") do |config|
     sudo systemctl restart httpd.service
     
     sudo sed -i "57i LoadModule rewrite_module modules/mod_rewrite.so" /etc/httpd/conf/httpd.conf 
-    sudo gawk 'NR==153 { sub("AllowOverride None", "AllowOverride All" )}' /etc/httpd/conf/httpd.conf
+    sudo gawk 'NR==152 { sub("AllowOverride None", "AllowOverride All" )}' /etc/httpd/conf/httpd.conf
     sudo gawk 'NR==7 { sub("SELINUX=enforcing", "SELINUX=disabled") }' /etc/selinux/config
      
   SHELL

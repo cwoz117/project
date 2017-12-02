@@ -1,3 +1,6 @@
+<?php require("global/session.php");
+      is_logged_in(); 
+?>
 <!DOCTYPE html>
 <html>
 
@@ -7,6 +10,7 @@
 </head>
 
 <body>
+
 <div class="w3-container">
   <header class="w3-container w3-center">
     <h1><a href="home.php">TruckCo</a></h1>

@@ -7,6 +7,4 @@
     echo("Error: Cannot connect to the database server " . $link->connect_error);
     exit;
   }
-
-  echo 'successful conn';
 ?>

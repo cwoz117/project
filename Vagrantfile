@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     cd /vagrant
     sudo yum -y update
-    sudo yum -y install httpd php mariadb mariadb-server vim git
+    sudo yum -y install httpd mariadb mariadb-server php php-mysql vim git
     
     sudo systemctl enable mariadb.service
     sudo systemctl restart mariadb.service
@@ -83,6 +83,8 @@ Vagrant.configure("2") do |config|
     echo -e "\nn\n\n\n\n\n " | mysql_secure_installation 2>/dev/null
   
     sudo mysql -u root < ddl.sql
+
+    sudo shutdown -r now
 
   SHELL
 end

@@ -68,7 +68,9 @@ Vagrant.configure("2") do |config|
     cd /vagrant
     sudo yum -y update
     sudo yum -y install httpd php mariadb mariadb-server vim git
-    
+
+    sudo echo "include_path='/vagrant/library'" >> /etc/php.ini
+
     sudo systemctl enable mariadb.service
     sudo systemctl restart mariadb.service
     sudo systemctl enable httpd.service

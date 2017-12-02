@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 80, host: 2225
+  config.vm.network "forwarded_port", guest: 80, host: 8080
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -67,7 +67,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     cd /vagrant
     sudo yum -y update
-    sudo yum -y install httpd php mariadb mariadb-server vim git
+    sudo yum -y install httpd mariadb mariadb-server php php-mysql vim git
 
     sudo echo "include_path='/vagrant/library'" >> /etc/php.ini
 

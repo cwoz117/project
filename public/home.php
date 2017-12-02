@@ -1,7 +1,7 @@
 <?php require('fragments/_head.php');
       require('fragments/_nav.php');?>
 
-<div class='container'>
+<div class='w3-container'>
   <p>Content Here bitchez </p>
 </div>
 

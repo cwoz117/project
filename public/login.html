@@ -1,0 +1,45 @@
+<!DOCTYPE=html>
+<html>
+	<body>
+		<style>
+			body {
+				margin: 0;
+			}
+			
+			.leftside {
+				height=100%;
+				width: 200px;
+				position: fixed;
+				z-index: 1;
+				top: 0;
+				left: 0;
+				overflow-x: hidden;
+			}
+			
+			.rightside {
+				height=100%;
+				width: 200px;
+				position: fixed;
+				z-index: 1;
+				top: 600;
+				left: 300;
+			}
+		</style>
+		<div class="leftside">
+			<form action="check_login.php" method="post">
+				Username:<br>
+				<input type="text" name="username" maxlength="10"><br>
+				Password:<br>
+				<input type="password" name="password" maxlength="16"><br>
+				<br>
+				<input type="submit" Value="Sign-in"><br>
+			</form>
+			
+		</div>
+		<div class="rightside">
+			<a href="signup.html">Sign up</a>
+		
+		</div>
+		
+	</body>
+</html>

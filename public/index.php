@@ -1,21 +1,28 @@
+<?php
+  session_start();
+  if((isset($_SESSION["login"]) && $_SESSION['login'] == "OK")){
+    header("Location: ../home.php");
+  }
+?>
+
 <!Doctype html>
 <html>
 <head>
   <title>Truckco</title>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script>
-    function openForm(formName) {
-      var i;
-      var x = document.getElementsByClassName("form");
-      for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-      }
-      document.getElementById(formName).style.display = "block";
+  function openForm(formName) {
+    var i;
+    var x = document.getElementsByClassName("form");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
     }
+    document.getElementById(formName).style.display = "block";
+  }  
   </script>
 </head>
 <body>
-  <div class="w3-card-4 w3-display-middle w3-hover-shadow w3-round">
+  <div class="w3-card-4 w3-hover-shadow w3-round w3-display-middle">
     
     <header class="w3-bar w3-blue">
       <button class="w3-bar-item w3-button" onclick="openForm('login')">Login</button>
@@ -47,7 +54,6 @@
       <input class="w3-button w3-blue w3-round w3-margin-top" type="submit" value="Register">
     </form>
   </div>
-</div>
 </body>
 </html>
 

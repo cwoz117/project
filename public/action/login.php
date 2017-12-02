@@ -1,7 +1,6 @@
 <?php
   session_start();
   require("global/db.php");
-  require("global/session.php");
   
   $user = $_POST["username"];
   $pass = $_POST["password"];
@@ -10,7 +9,13 @@
   $result = $link->query($sql);
 
   if ($result->num_rows == 1){
-    fill_user_session($result->fetch_assoc());
+    echo 'so we got a value back <br>';
+    $row = $result->fetch_assoc();
+    echo "$row";
+    $_SESSION['username'] = $row['username'];
+    $_SESSION['login'] = "OK";
+
+    echo 'returned from the function call<br>';
     $redirect = "../home.php";
   } else
     $redirect = "../index.php";

@@ -1,6 +1,4 @@
 <?php 
-  require("global/session.php");
-  
   require('fragments/_head.php');
   require('fragments/_nav.php');
 ?>
@@ -14,7 +12,7 @@
            end
 -->
 
-  <div class='w3-container'>
+  <div class='w3-container' style="min-height:400px;">
     <p>Content Here bitchez </p>
   </div>
 

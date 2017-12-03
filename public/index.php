@@ -47,12 +47,9 @@
       <label>Username:</label> 
       <input class="w3-input w3-round" type="text" name="username">
       <label>Password:</label> 
-      <input class="w3-input w3-round" type="password" name="password">
+     <input class="w3-input w3-round" type="password" name="password">
       <input class="w3-button w3-blue w3-round w3-margin-top" type="submit" value="Login">
     
-      <div class="w3-center w3-panel w3-red">
-        <?php echo $_SESSION['flash']; $_SESSION['flash'] = ""; ?>
-      </div>
     </form>
 
     <form id="register_driver" class="form w3-container w3-padding" action="action/register.php" method="post" style="display:none">
@@ -88,6 +85,9 @@
       <input class="w3-button w3-blue w3-round w3-margin-top" id="submitC" type="submit" value="Register">
       <input class="w3-input w3-round" type="text" id="pwd_error2" readonly>
     </form> 
+      <div class="w3-center w3-panel w3-red">
+        <?php echo $_SESSION['flash']; $_SESSION['flash'] = ""; ?>
+      </div>
   </div>
 </body>
 </html>

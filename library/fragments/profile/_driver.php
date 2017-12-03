@@ -46,6 +46,28 @@
   </div>
 </div>
 
+<div id="delete" class="w3-modal">
+  <div class="w3-modal-content w3-animate-top">
+    <div class="w3-container">
+      <h2 style="text-align:center">Delete Truck</h2>
+    </div>
+    <form class="w3-container w3-card-4 w3-padding" action="action/delete_truck.php" method="post">
+      <input type="text" class="w3-border-0" value="Truck with Registration: " readonly>
+      <input type="text" class="w3-input w3-border-0 w3-padding-small" id="dReg" readonly>
+      <input class="w3-button w3-margin w3-red w3-round w3-align-left" type="submit" value="Delete">
+      <a href="profile.php" class="w3-button w3-margin w3-blue w3-round w3-align-right">Cancel</a>
+    </form>
+  </div>
+</div>
+
+<script>
+	function confirmDelete(reg) {
+		document.getElementById("delete").style.display = 'block';
+		document.getElementById("dReg").value = reg;
+	}
+
+</script>
+
 <div class="w3-container">
   <div class="w3-card w3-section w3-round-large">
 
@@ -63,16 +85,50 @@
     </div>
     <div class="w3-container w3-cell">      
       <div class="w3-card w3-padding w3-section" style="min-height:200px;">
-        <ul class="w3-ul w3-hoverable">
+        <ul class="w3-ul w3-center">
           <h2 class="w3-center">Trucks</h2>
-          <li class="w3-border">Truck A <span style="float:right;">Active</span></li>
-          <li class="w3-border">Truck B</li>
-          <li class="w3-border w3-center w3-light-grey" onclick="document.getElementById('id01').style.display='block'"> 
+	  <?php
+              require("global/db.php");
+
+              $userID = $_SESSION["userID"];
+              $conID;
+	
+	      $sql = "select contractor_id from Driver where $userID = user_id;";
+              $conID = (int) $link->query($sql);
+
+              $sql = "select * from Truck where $conID = contractor_id;";
+	      $result = $link->query($sql);
+              
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+		  $reg = $row["registration"];
+                  $pro = $row["provider"];
+		  $polnum = $row["policy_num"];
+                  $plate = $row["plate_num"];
+                  $make = $row["make"];
+                  $year = $row["year"];
+                  $prov = $row["province"];
+                  $trailer = $row["trailer"];
+                  echo "<li id='title' class='w3-display-container w3-border'>Truck Registration: $reg
+				<span class='w3-button w3-white w3-border w3-display-left'  id='view' onclick=\"confirmDelete\" >View</span>
+				<button class='w3-button w3-display-right w3-white w3-border' id='close' onclick=\"confirmDelete($reg)\">&times;</span>
+
+			</li>";
+                }
+              } else {
+		echo "did not work <br>";
+              }      
+   
+
+          ?>
+          <!--<li class="w3-border">Truck A <span style="float:right;">Active</span></li>
+          <li class="w3-border">Truck B</li> -->
+          <li class="w3-border w3-center w3-light-grey" onclick="document.getElementById('id01').style.display='block'">
+
             <i class='fa fa-plus-square-o'></i>
           </li>
         </ul>
       </div>
     </div>
-
   </div>
 </div>

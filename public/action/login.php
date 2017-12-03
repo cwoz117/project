@@ -9,13 +9,21 @@
   $result = $link->query($sql);
 
   if ($result->num_rows == 1){
-    echo 'so we got a value back <br>';
     $row = $result->fetch_assoc();
-    echo "$row";
-    $_SESSION['username'] = $row['username'];
     $_SESSION['login'] = "OK";
+    $_SESSION['username'] = $row['username'];
+    $_SESSION['type'] = $row['acc_type'];
+    
+     
+    #if ($_SESSION['type'] === 1) {
+      $_SESSION['testo'] = "hello world";
+      $id = $row['user_id'];
+      $corporate_sql = "SELECT * from Company where user_id = '$id';";
+      $corporate = $link->query($corporate_sql)->fetch_assoc();
+      $_SESSION['company_name'] = $corporate['name'];
 
-    echo 'returned from the function call<br>';
+    #}
+
     $redirect = "../home.php";
   } else
     $redirect = "../index.php";

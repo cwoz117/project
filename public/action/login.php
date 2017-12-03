@@ -5,7 +5,7 @@
   $user = $_POST["username"];
   $pass = $_POST["password"];
   
-  $sql = "SELECT * FROM Users WHERE username='$user' and password='$pass';";
+  $sql = "SELECT * FROM User WHERE username='$user' and password='$pass';";
   $result = $link->query($sql);
 
   if ($result->num_rows == 1){

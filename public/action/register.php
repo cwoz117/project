@@ -8,7 +8,7 @@
   require("global/db.php");  
 
 
-  $sql = "insert into Users (username, password) values ('$user', '$pass');";
+  $sql = "insert into User (username, password) values ('$user', '$pass');";
   if ($link->query($sql) === true)
     header("Location: ../home.php");
   else

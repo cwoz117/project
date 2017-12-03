@@ -4,7 +4,7 @@ USE truckco;
 
 CREATE TABLE User(
 	user_id		INT UNSIGNED	AUTO_INCREMENT,
-	username	INT UNSIGNED	NOT NULL UNIQUE,
+	username	varchar(16)	NOT NULL UNIQUE,
 	password	varchar(255)	NOT NULL, 
 	acc_type	INT 		NOT NULL, 		-- make this so it can only tkae on 4 values: 0, 1, 2, 3
 	

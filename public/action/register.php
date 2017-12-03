@@ -18,7 +18,7 @@
   require("global/db.php");  
 
   #Checking if username is used
-  $sql = "select username from User";
+  $sql = "select username from User;";
   $result = $link->query($sql);
   
   while($row = $result->fetch_assoc()) {

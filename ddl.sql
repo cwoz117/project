@@ -5,7 +5,8 @@ USE truckco;
 CREATE TABLE User(
 	user_id		INT UNSIGNED	AUTO_INCREMENT,
 	username	varchar(16)	NOT NULL UNIQUE,
-	password	varchar(255)	NOT NULL, 
+	password	varchar(255)	NOT NULL,
+  profile_text    varchar(255),
 	acc_type	INT 		NOT NULL, 		-- make this so it can only tkae on 4 values: 0, 1, 2, 3
 	
 	PRIMARY KEY (user_id)
@@ -33,7 +34,8 @@ CREATE TABLE ContractEmployer(
 );
 
 CREATE TABLE Driver(
-	user_id		INT UNSIGNED	NOT NULL UNIQUE, 
+	user_id		INT UNSIGNED	NOT NULL UNIQUE,
+  name      varchar(255)    NOT NULL,
 	wcb_no		varchar(20)	NOT NULL UNIQUE, 
 	driver_license	varchar(20)	NOT NULL UNIQUE, 		
 	banking_info 	varchar(20)	NOT NULL UNIQUE, 

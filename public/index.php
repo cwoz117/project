@@ -18,7 +18,8 @@
       x[i].style.display = "none";
     }
     document.getElementById(formName).style.display = "block";
-  }  
+  }
+
   
   function check_pass(buttonName, passN, rePassN, error) {
     if (document.getElementById(passN).value == document.getElementById(rePassN).value) {
@@ -31,28 +32,57 @@
        document.getElementById(error).value = "Passwords do not match";
     }
   }  
-
   </script>
-</head>
-<body>
-  <div class="w3-card-4 w3-hover-shadow w3-round w3-display-middle">
-    
-    <header class="w3-bar w3-blue">
-      <button class="w3-bar-item w3-button" onclick="openForm('login')">Login</button>
-      <button class="w3-bar-item w3-button" onclick="openForm('register_driver')">Driver Registration</button>
-      <button class="w3-bar-item w3-button" onclick="openForm('register_company')">Company Registration</button>
-    </header>
-    
-    <form id="login" class="form w3-container w3-padding" action="action/login.php" method="post">
-      <label>Username:</label> 
-      <input class="w3-input w3-round" type="text" name="username">
-      <label>Password:</label> 
-     <input class="w3-input w3-round" type="password" name="password">
-      <input class="w3-button w3-blue w3-round w3-margin-top" type="submit" value="Login">
-    
-    </form>
 
-    <form id="register_driver" class="form w3-container w3-padding" action="action/register.php" method="post" style="display:none">
+  <style>
+
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+    .bg {
+      background-image: url('Truck.jpg');
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div class="bg w3-opacity"></div>
+  <div class="w3-card-4 w3-hover-shadow w3-round-large w3-display-middle w3-white" style="min-width:30%;">
+    <header class="w3-container w3-blue w3-center" style="border-top-right-radius:8px;border-top-left-radius:8px;">
+      <h1>Truckco</h1>
+    </header>    
+    <form class="w3-container w3-padding" action="action/login.php" method="post">
+      <fieldset>
+        <legend>Login</legend>
+        <label>Username:</label> 
+        <input class="w3-input w3-round" type="text" name="username">
+        <label>Password:</label> 
+        <input class="w3-input w3-round" type="password" name="password">
+        <p class="w3-red"><?php echo $_SESSION['flash']; $_SESSION['flash'] = ""; ?></p>
+        
+        <div><input class="w3-button w3-blue w3-round w3-margin-top" type="submit" value="Login"></div>
+        <a href="#">Forgot Password?</a>
+      </fieldset>
+    </form>
+    <div class="w3-center w3-margin"><a onclick="document.getElementById('modal').style.display='block'" href='#'>Register Here!</a></div>
+  </div>
+</body>
+</html>
+
+
+<div id="modal" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-round-large">
+    <header class="w3-bar w3-round-large">
+      <button class="w3-bar-item w3-button w3-blue" onclick="openForm('register_driver')">Driver Registration</button>
+      <button class="w3-bar-item w3-button w3-blue" onclick="openForm('register_company')">Company Registration</button>
+    </header>
+    <form id="register_driver" class="form w3-container w3-padding" action="action/register.php" method="post">
       <label>Username:</label> 
       <input class="w3-input w3-round" type="text" name="username">
       <label>Password:</label> 
@@ -85,10 +115,13 @@
       <input class="w3-button w3-blue w3-round w3-margin-top" id="submitC" type="submit" value="Register">
       <input class="w3-input w3-round" type="text" id="pwd_error2" readonly>
     </form> 
-      <div class="w3-center w3-panel w3-red">
-        <?php echo $_SESSION['flash']; $_SESSION['flash'] = ""; ?>
-      </div>
   </div>
-</body>
-</html>
-
+</div>
+<script>
+  var modal = document.getElementById('modal');
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>

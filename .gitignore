@@ -1,5 +1,6 @@
 .vagrant
 *.swp
+*.DS_Store
 
 # Prerequisites
 *.d

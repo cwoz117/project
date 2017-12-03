@@ -53,7 +53,7 @@
 
     <form id="register_driver" class="form w3-container w3-padding" action="action/register.php" method="post" style="display:none">
       <label>Username:</label> 
-      <input class="w3-input w3-round" type="text" name="usernameD">
+      <input class="w3-input w3-round" type="text" name="username">
       <label>Password:</label> 
       <input class="w3-input w3-round" type="password" id="passD" name="password" onblur="check_pass('submitD','passD', 'repassD', 'pwd_error')">
       <label>Re-enter Password:</label> 

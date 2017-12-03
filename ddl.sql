@@ -23,7 +23,7 @@ CREATE TABLE ContractEmployer(
 	user_id		INT UNSIGNED	NOT NULL UNIQUE, 
 	name		varchar(255)	NOT NULL, 
 	business_id	INT UNSIGNED	NOT NULL UNIQUE, 		-- make this so it can only tkae on 4 values: 0, 1, 2, 3
-	banking_info 	INT UNSIGNED	NOT NULL UNIQUE, 
+	banking_info 	varchar(20)	NOT NULL UNIQUE, 
 	contractor_id	INT UNSIGNED	NOT NULL UNIQUE, 
 	
 	PRIMARY KEY (user_id), 
@@ -34,9 +34,9 @@ CREATE TABLE ContractEmployer(
 
 CREATE TABLE Driver(
 	user_id		INT UNSIGNED	NOT NULL UNIQUE, 
-	wcb_no		INT UNSIGNED	NOT NULL UNIQUE, 
-	driver_license	INT UNSIGNED	NOT NULL UNIQUE, 		
-	banking_info 	INT UNSIGNED	NOT NULL UNIQUE, 
+	wcb_no		varchar(20)	NOT NULL UNIQUE, 
+	driver_license	varchar(20)	NOT NULL UNIQUE, 		
+	banking_info 	varchar(20)	NOT NULL UNIQUE, 
 	contractor_id	INT UNSIGNED	NOT NULL UNIQUE, 
 	
 	PRIMARY KEY (user_id), 
@@ -48,7 +48,7 @@ CREATE TABLE Driver(
 CREATE TABLE Company(
 	user_id		INT UNSIGNED	NOT NULL UNIQUE, 
 	name		varchar(255)	NOT NULL, 		
-	banking_info 	INT UNSIGNED	NOT NULL UNIQUE, 
+	banking_info 	varchar(20)	NOT NULL UNIQUE, 
 	address		varchar(255)	NOT NULL, 
 	
 	PRIMARY KEY (user_id)
@@ -110,7 +110,7 @@ CREATE TABLE Workorder(
 
 CREATE TABLE PolicyRequirements(
 	payload_id		INT UNSIGNED	NOT NULL,
-	policy_no		INT UNSIGNED	NOT NULL,
+	policy_no		VARCHAR(20)	NOT NULL,
 	jurisdiction		CHAR(2)		NOT NULL,
 	tail_or_lead		BOOLEAN		NOT NULL,
 	start_time		DATE		NOT NULL,

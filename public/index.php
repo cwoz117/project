@@ -46,7 +46,7 @@
       <label>Re-enter Password:</label> 
       <input class="w3-input w3-round" type="password" name="repass">
       <label>WCB number:</label> 
-      <input class="w3-input w3-round" type="text" name="wcb">
+      <input class="w3-input w3-round" type="number" name="wcb">
       <label>Driver License:</label> 
       <input class="w3-input w3-round" type="text" name="license">
       <label>Banking Information:</label> 

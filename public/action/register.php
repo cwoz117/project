@@ -30,35 +30,27 @@
   }
   
 
+  $userID;
   #Inserting entry into users
   $sql = "insert into User (username, password, acc_type) values ('$user', '$pass', 2);";
-  if ($link->query($sql) === true)
-    header("Location: ../home.php");
-  else
+  if ($link->query($sql) === true) {
+    $userID = (int) $link->insert_id; 
+  } else {
     echo 'soemthing dun fucked up';
-  
-  #Getting User ID --> May be wrong
-  $sql = "select max(user_id) from User;";
-  
-  #Are these steps necessary?
-  $result = $link->query($sql);
-  $userID = (int) $result;
-  ##############################
+  }
+
 
 
   #Creation of a contractor
   $sql = "insert into Contractor () values ();"; 
-  $link->query($sql);
   
-  #This might be entirely wrong --> Trying to get latest created ID for contractor
-
-  $sql = "select max(contractor_id) from Contractor;";
+  $cID;
+  if ($link->query($sql) === true) {
+    $cID = (int) $link->insert_id;
+  } else {
+     echo "some error happened here";
+  }
   
-  #Are these steps necessary?
-  $result = $link->query($sql);
-  $cID = (int) $result;
-  ##############################
-  echo $cID;
   #Inserting entry into just driver for now
   $sql = "insert into Driver(user_id, wcb_no, driver_license, banking_info, contractor_id) values ($userID, $wcb, $lic, $banking, $cID);";
   if ($link->query($sql) == false) 
@@ -66,4 +58,7 @@
 
 
   $link->close();
+
+  #Maybe success message somehow
+  header("Location: ../home.php");
 ?>

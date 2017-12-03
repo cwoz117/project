@@ -7,6 +7,11 @@
     <p>
       Password reset forms and name changers if we want to do anything like that, 
       but I don't think we needed to right? Anyways at least password reset should be here.
+      
+      
+      
+      
+      
     </p>
   </div>
 

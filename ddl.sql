@@ -14,7 +14,7 @@ CREATE TABLE Users(
 	user_id			INT	UNSIGNED	AUTO_INCREMENT,
 	username		varchar(10)		NOT NULL UNIQUE,
 	password		varchar(255)		NOT NULL,
-	admin			BOOLEAN			NOT NULL,
+	admin			BOOLEAN			NOT NULL, 
 
 	PRIMARY KEY (user_id)
 );

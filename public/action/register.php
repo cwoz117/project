@@ -28,7 +28,7 @@
   
 
 
-  $sql = "insert into User (username, password) values ('$user', '$pass');";
+  $sql = "insert into User (username, password, acc_type) values ('$user', '$pass', 2);";
   if ($link->query($sql) === true)
     header("Location: ../home.php");
   else

@@ -11,6 +11,8 @@
   if ($result->num_rows == 1){
     $row = $result->fetch_assoc();
     $_SESSION['login'] = "OK";
+
+    $_SESSION['userID'] = $row['user_id'];
     $_SESSION['username'] = $row['username'];
     $_SESSION['type'] = $row['acc_type'];
     
@@ -23,6 +25,7 @@
       $_SESSION['company_name'] = $corporate['name'];
 
     #}
+
 
     $redirect = "../home.php";
   } else

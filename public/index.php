@@ -19,6 +19,19 @@
     }
     document.getElementById(formName).style.display = "block";
   }  
+  
+  function check_pass(buttonName, passN, rePassN, error) {
+    if (document.getElementById(passN).value == document.getElementById(rePassN).value) {
+       document.getElementById(buttonName).disabled = false;
+       document.getElementById(error).style.color="#00FF00";
+       document.getElementById(error).value = "Password match";	
+    } else {
+       document.getElementById(buttonName).disabled = true;
+       document.getElementById(error).style.color="#FF0000";
+       document.getElementById(error).value = "Passwords do not match";
+    }
+  }  
+
   </script>
 </head>
 <body>
@@ -40,35 +53,37 @@
 
     <form id="register_driver" class="form w3-container w3-padding" action="action/register.php" method="post" style="display:none">
       <label>Username:</label> 
-      <input class="w3-input w3-round" type="text" name="username">
+      <input class="w3-input w3-round" type="text" name="usernameD">
       <label>Password:</label> 
-      <input class="w3-input w3-round" type="password" name="password">
+      <input class="w3-input w3-round" type="password" id="passD" name="password" onblur="check_pass('submitD','passD', 'repassD', 'pwd_error')">
       <label>Re-enter Password:</label> 
-      <input class="w3-input w3-round" type="password" name="repass">
+      <input class="w3-input w3-round" type="password" id="repassD" name="repass" onblur="check_pass('submitD', 'passD', 'repassD' ,'pwd_error')">
       <label>WCB number:</label> 
-      <input class="w3-input w3-round" type="number" name="wcb">
+      <input class="w3-input w3-round" type="text" name="wcb" pattern="[0-9]+">
       <label>Driver License:</label> 
-      <input class="w3-input w3-round" type="text" name="license">
+      <input class="w3-input w3-round" type="text" name="license" pattern="[0-9]+">
       <label>Banking Information:</label> 
-      <input class="w3-input w3-round" type="text" name="bankinfo">
-      <input class="w3-button w3-blue w3-round w3-margin-top" type="submit" value="Register">
+      <input class="w3-input w3-round" type="text" name="bankinfo" pattern="[0-9]+">
+      <input class="w3-button w3-blue w3-round w3-margin-top" type="submit" id="submitD" value="Register">
+      <input class="w3-input w3-round" type="text" id="pwd_error" readonly>
     </form>
 
-    <form id="register_company" class="form w3-container w3-padding" action="action/register.php" method="post" style="display:none">
+    <form id="register_company" class="form w3-container w3-padding" action="action/companyRegister.php" method="post" style="display:none">
       <label>Username:</label> 
       <input class="w3-input w3-round" type="text" name="username">
       <label>Password:</label> 
-      <input class="w3-input w3-round" type="password" name="password">
+      <input class="w3-input w3-round" type="password" id="passC" name="password" onblur="check_pass('submitC', 'passC', 'repassC', 'pwd_error2')">
       <label>Re-enter Password:</label> 
-      <input class="w3-input w3-round" type="password" name="repass">
+      <input class="w3-input w3-round" type="password" id="repassC" name="repass" onblur="check_pass('submitC', 'passC', 'repassC', 'pwd_error2')">
       <label>Company Name:</label> 
       <input class="w3-input w3-round" type="text" name="companyname">
       <label>Banking information:</label> 
-      <input class="w3-input w3-round" type="text" name="bankinfo">
+      <input class="w3-input w3-round" type="text" name="bankinfo" pattern="[0-9]+">
       <label>Address:</label> 
       <input class="w3-input w3-round" type="text" name="address">
-      <input class="w3-button w3-blue w3-round w3-margin-top" type="submit" value="Register">
-    </form>
+      <input class="w3-button w3-blue w3-round w3-margin-top" id="submitC" type="submit" value="Register">
+      <input class="w3-input w3-round" type="text" id="pwd_error2" readonly>
+    </form> 
   </div>
 </body>
 </html>

@@ -1,10 +1,9 @@
 <?php
   $user = $_POST["username"];
-  $pass = $_POST["password"];
-  $repass = $_POST["repass"];  
-  $wcb = ((int) $_POST["wcb"]);
-  $lic = ((int) $_POST["license"]);
-  $banking = ((int) $_POST["bankinfo"]);
+  $pass = $_POST["password"];  
+  $wcb = $_POST["wcb"];
+  $lic = $_POST["license"];
+  $banking = $_POST["bankinfo"];
 
   require("global/db.php");  
 
@@ -15,6 +14,7 @@
   if ($result->num_rows > 0) {
     header("Location: ../home.php");
     #header("Flash repsone???");
+    exit();
   }
 
   $userID;
@@ -37,7 +37,7 @@
   }
   
   #Inserting entry into just driver for now
-  $sql = "insert into Driver(user_id, wcb_no, driver_license, banking_info, contractor_id) values ($userID, $wcb, $lic, $banking, $cID);";
+  $sql = "insert into Driver(user_id, wcb_no, driver_license, banking_info, contractor_id) values ($userID, '$wcb', '$lic', '$banking', $cID);";
   if ($link->query($sql) == false) 
     echo " motherfucker";
 

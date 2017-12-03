@@ -2,7 +2,7 @@
 $user = $_POST["username"];
 $pass = $_POST["password"];
 $compName = $_POST["companyname"];
-$bank = (int) $_POST["bankinfo"];
+$bank = $_POST["bankinfo"];
 $addr = $_POST["address"];
 	
 require("global/db.php");
@@ -13,6 +13,7 @@ $result = $link->query($sql);
 if ($result->num_rows > 0) {
 	header("Location: ../home.php");
 	#header("Flash: )";
+	exit();
 }
 
 #Inserting entry into users

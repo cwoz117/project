@@ -2,10 +2,9 @@
   $user = $_POST["username"];
   $pass = $_POST["password"];
   $repass = $_POST["repass"];  
-  $wcb = $_POST["wcb"];
-  $lic = $_POST["license"];
-  $banking = $_POST["bankinfo"];
-
+  $wcb = ((int) $_POST["wcb"]);
+  $lic = ((int) $_POST["license"]);
+  $banking = ((int) $_POST["bankinfo"]);
 
   # should probably add a 2nd password for confirmation, then redirect with a flash
   # message update if its wrong, but w/e for now we got root
@@ -43,8 +42,7 @@
   
   #Are these steps necessary?
   $result = $link->query($sql);
-  $row = $result->fetch_assoc();
-  $userID = $row["user_id"];
+  $userID = (int) $result;
   ##############################
 
 
@@ -58,14 +56,13 @@
   
   #Are these steps necessary?
   $result = $link->query($sql);
-  $row = $result->fetch_assoc();
-  $cID = $row["contractor_id"];
+  $cID = (int) $result;
   ##############################
-
-
+  echo $cID;
   #Inserting entry into just driver for now
-  $sql = "insert into Driver(user_id, wcb_no, driver_license, banking_info, contractor_id) values ('$userID', '$wcb', '$lic', '$bankinfo', '$cID');";
-  $link->query($sql);
+  $sql = "insert into Driver(user_id, wcb_no, driver_license, banking_info, contractor_id) values ($userID, $wcb, $lic, $banking, $cID);";
+  if ($link->query($sql) == false) 
+    echo " motherfucker";
 
 
   $link->close();

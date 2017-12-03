@@ -10,3 +10,10 @@
     </div>
   </div>
 </nav>
+
+<div class="w3-center w3-panel w3-red">
+<?php 
+  echo $_SESSION['flash']; 
+  $_SESSION['flash'] = "";
+?>
+</div>

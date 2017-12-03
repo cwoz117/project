@@ -43,6 +43,8 @@
       <input class="w3-input w3-round" type="text" name="username">
       <label>Password:</label> 
       <input class="w3-input w3-round" type="password" name="password">
+      <label>Re-enter Password:</label> 
+      <input class="w3-input w3-round" type="password" name="repass">
       <label>WCB number:</label> 
       <input class="w3-input w3-round" type="text" name="wcb">
       <label>Driver License:</label> 
@@ -57,6 +59,8 @@
       <input class="w3-input w3-round" type="text" name="username">
       <label>Password:</label> 
       <input class="w3-input w3-round" type="password" name="password">
+      <label>Re-enter Password:</label> 
+      <input class="w3-input w3-round" type="password" name="repass">
       <label>Company Name:</label> 
       <input class="w3-input w3-round" type="text" name="companyname">
       <label>Banking information:</label> 

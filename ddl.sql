@@ -3,13 +3,21 @@ CREATE DATABASE truckco;
 USE truckco;
 
 CREATE TABLE User(
-	username	INT UNSIGNED	NOT NULL UNIQUE, 
-	user_id		INT UNSIGNED	AUTO_INCREMENT, 
+	user_id		INT UNSIGNED	AUTO_INCREMENT,
+	username	INT UNSIGNED	NOT NULL UNIQUE,
 	password	varchar(255)	NOT NULL, 
 	acc_type	INT 		NOT NULL, 		-- make this so it can only tkae on 4 values: 0, 1, 2, 3
 	
-	PRIMARY KEY (username)
+	PRIMARY KEY (user_id)
 );
+
+CREATE TABLE Contractor(
+  contractor_id   INT UNSIGNED    AUTO_INCREMENT,
+
+  PRIMARY KEY (contractor_id)
+);
+
+
 
 CREATE TABLE ContractEmployer(
 	user_id		INT UNSIGNED	NOT NULL UNIQUE, 
@@ -43,7 +51,7 @@ CREATE TABLE Company(
 	banking_info 	INT UNSIGNED	NOT NULL UNIQUE, 
 	address		varchar(255)	NOT NULL, 
 	
-	PRIMARY KEY (user_id), 
+	PRIMARY KEY (user_id)
 );
 
 CREATE TABLE Truck(
@@ -75,7 +83,7 @@ CREATE TABLE Payload(
 	contact_info		varchar(255)	NOT NULL, 
 
 	PRIMARY KEY (payload_id), 
-	FOREIGN KEY (company_id) REFERENCES Company(company_id)
+	FOREIGN KEY (company_id) REFERENCES Company(user_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );
@@ -102,7 +110,7 @@ CREATE TABLE Workorder(
 
 CREATE TABLE PolicyRequirements(
 	payload_id		INT UNSIGNED	NOT NULL,
-	policy_no		INT UNSIGNED	AUTO_INCREMENT,
+	policy_no		INT UNSIGNED	NOT NULL,
 	jurisdiction		CHAR(2)		NOT NULL,
 	tail_or_lead		BOOLEAN		NOT NULL,
 	start_time		DATE		NOT NULL,
@@ -139,7 +147,7 @@ CREATE TABLE Location(
 	contact_number		CHAR(10)	NOT NULL,
 
 	PRIMARY KEY (location_id),
-	FOREIGN KEY (company_id) REFERENCES Company(company_id)
+	FOREIGN KEY (company_id) REFERENCES Company(user_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );

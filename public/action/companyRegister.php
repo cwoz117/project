@@ -1,28 +1,18 @@
 <?php
 $user = $_POST["username"];
 $pass = $_POST["password"];
-$repass = $_POST["repass"];
 $compName = $_POST["companyname"];
 $bank = (int) $_POST["bankinfo"];
 $addr = $_POST["address"];
 	
-if ($pass === $repass) {
-	
-} else {
-	#ERROR HERE
-	header("Location: ../home.php");
-}
-
 require("global/db.php");
 	
-$sql = "select username from User;";
+$sql = "select $username from User;";
 $result = $link->query($sql);
 
-while ($row = $result->fetch_assoc()) {
-	if ($user == $row["username"]) {
-		#ERROR HERE
-		header("Location: ../home.php");
-	}
+if ($result->num_rows > 0) {
+	header("Location: ../home.php");
+	#header("Flash: )";
 }
 
 #Inserting entry into users

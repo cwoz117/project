@@ -14,6 +14,7 @@
     echo "$row";
     $_SESSION['username'] = $row['username'];
     $_SESSION['login'] = "OK";
+    $_SESSION['userID'] = $row['user_id'];
 
     echo 'returned from the function call<br>';
     $redirect = "../home.php";

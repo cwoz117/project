@@ -47,13 +47,13 @@
 </div>
 
 <div id="delete" class="w3-modal">
-  <div class="w3-modal-content w3-animate-top">
+  <div class="w3-modal-content w3-animate-top" style="max-width:300px">
     <div class="w3-container">
       <h2 style="text-align:center">Delete Truck</h2>
     </div>
     <form class="w3-container w3-card-4 w3-padding" action="action/delete_truck.php" method="post">
       <input type="text" class="w3-border-0" value="Truck with Registration: " readonly>
-      <input type="text" class="w3-input w3-border-0 w3-padding-small" id="dReg" readonly>
+      <input type="text" class="w3-input w3-center w3-border-0 w3-padding-small" name="registration" id="dReg" readonly>
       <input class="w3-button w3-margin w3-red w3-round w3-align-left" type="submit" value="Delete">
       <a href="profile.php" class="w3-button w3-margin w3-blue w3-round w3-align-right">Cancel</a>
     </form>
@@ -98,10 +98,11 @@
 
               $sql = "select * from Truck where $conID = contractor_id;";
 	      $result = $link->query($sql);
-              
-              if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-		  $reg = $row["registration"];
+              $length = $result->num_rows;
+              if ($length > 0) {
+	        for ($index=0; $index < $length; $index++) {
+		  $row = $result->fetch_assoc();
+                  $reg = $row["registration"];
                   $pro = $row["provider"];
 		  $polnum = $row["policy_num"];
                   $plate = $row["plate_num"];
@@ -109,9 +110,12 @@
                   $year = $row["year"];
                   $prov = $row["province"];
                   $trailer = $row["trailer"];
-                  echo "<li id='title' class='w3-display-container w3-border'>Truck Registration: $reg
+		  $truckNum = $index+1;
+                  echo "<li id='title' class='w3-display-container w3-border'>Truck: $truckNum
 				<span class='w3-button w3-white w3-border w3-display-left'  id='view' onclick=\"confirmDelete\" >View</span>
 				<button class='w3-button w3-display-right w3-white w3-border' id='close' onclick=\"confirmDelete($reg)\">&times;</span>
+                                <div id='info' class='w3-hide'> BOO
+                                </div>
 
 			</li>";
                 }

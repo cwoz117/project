@@ -66,6 +66,20 @@
 		document.getElementById("dReg").value = reg;
 	}
 
+	function toggleView(element) {
+		var doc=document.getElementById(element);
+		if (doc.className.indexOf("w3-show")==-1) {
+			doc.className += " w3-show";
+		} else {
+			doc.className = doc.className.replace(" w3-show", "");
+		}
+	}
+
+	function editTruckInfo(reg, cID, pvr, polnum, plate, make, model, year, prov, trailer) {i
+
+
+
+	}
 </script>
 
 <div class="w3-container">
@@ -107,20 +121,49 @@
 		  $polnum = $row["policy_num"];
                   $plate = $row["plate_num"];
                   $make = $row["make"];
+		  $model = $row["model"];
                   $year = $row["year"];
                   $prov = $row["province"];
                   $trailer = $row["trailer"];
 		  $truckNum = $index+1;
-                  echo "<li id='title' class='w3-display-container w3-border'>Truck: $truckNum
-				<span class='w3-button w3-white w3-border w3-display-left'  id='view' onclick=\"confirmDelete\" >View</span>
-				<button class='w3-button w3-display-right w3-white w3-border' id='close' onclick=\"confirmDelete($reg)\">&times;</span>
-                                <div id='info' class='w3-hide'> BOO
-                                </div>
-
-			</li>";
+                  echo "
+                          <li id='title' class='w3-display-container w3-border-blue w3-light-grey w3-bottombar'>$year $model $make Truck, License Plate $plate
+			    <span class='w3-button w3-display-left w3-border-right'  id='view' onclick=\"toggleView($index)\" >View</span>
+			    <button class='w3-button w3-display-right w3-border-left' id='close' onclick=\"confirmDelete($reg)\">&times;</button>
+			  </li>
+                          <div class='w3-hide w3-border w3-container' id='$index'>
+			    <div class=w3-container> 
+                            <h4><b>Truck Information</b></h4>
+		              <table class='w3-table'>
+                                <tr class='w3-border'>
+                                  <th>Registration</th>
+                                  <th>$reg</th
+                                </tr>
+                                <tr class='w3-border'>
+                                  <th>Provider</th>
+                                  <th>$prov</th
+                                </tr>
+                                <tr class='w3-border'>
+                                  <th>Policy Number</th>
+                                  <th>$polnum</th
+                                </tr>
+                                <tr class='w3-border'>
+                                  <th>Province</th>
+                                  <th>$prov</th
+                                </tr>
+                                <tr class='w3-border'>
+                                  <th>Trailer Type</th>
+                                  <th>$trailer</th
+                                </tr>
+                              </table>
+                              <button class='w3-button w3-right w3-blue w3-margin-bottom' onclick=\"\">Edit</button>
+                            </div>
+                          </div>
+                          
+                        ";
                 }
               } else {
-		echo "did not work <br>";
+		echo "You currently have not registered a truck.<br>";
               }      
    
 
@@ -136,3 +179,17 @@
     </div>
   </div>
 </div>
+
+			     <!-- <h4 class='w3-border'>Registration</h4>
+			      <p> $reg </p>
+			      <h4 class='w3-border'>Provider</h4>
+			      <p> $pro </p>
+			      <h4 class='w3-border'>Policy Number</h4>
+		              <p> $polnum </p>
+			      <h4 class='w3-border'>Plate Number</h4>
+			      <p> $plate </p>
+			      <h4 class='w3-border'>Province</h4>
+			      <p> $prov </p>
+			      <h4 class='w3-border'>Trailer Type</h4>
+			      <p> $trailer </p>
+		              <button class='w3-button w3-display-right w3-border w3-blue' id='edit'>Edit</button> -->

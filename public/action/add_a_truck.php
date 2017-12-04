@@ -2,7 +2,7 @@
 session_start();
 
 $userID = $_SESSION['userID'];
-$prov = $_POST['provider'];
+$prov = $_POST['prov'];
 $reg = $_POST['reg'];
 $ins = $_POST['insurance'];
 $pvdr = $_POST['provider'];
@@ -34,7 +34,7 @@ if ($result->num_rows > 0) {
 }
 
 
-$sql = "insert into Truck(registration, contractor_id, provider, policy_num, plate_num, make, model, year, province, trailer_type) values ('$reg', $conID, '$prov', '$polNum', '$plate', '$make', '$model', '$year', '$prov', '$trailer');";
+$sql = "insert into Truck(registration, contractor_id, provider, policy_num, plate_num, make, model, year, province, trailer_type) values ('$reg', $conID, '$pvdr', '$polNum', '$plate', '$make', '$model', '$year', '$prov', '$trailer');";
 
 if ($link->query($sql) === true) {
 	echo "Success";
@@ -44,4 +44,4 @@ if ($link->query($sql) === true) {
 	echo $year;
 }
 
-$link->close();
+$link->close();x

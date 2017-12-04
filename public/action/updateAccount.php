@@ -1,10 +1,11 @@
 <?php
+session_start();
 require("global/db.php");
 
 $user = $_SESSION['userID'];
 $accType = $_SESSION['type'];
 
-echo "acc type = '$accType'";
+$_SESSION['flash'] = $accType;
 
 switch($accType){
     case 1:
@@ -14,8 +15,6 @@ switch($accType){
         $name = $_POST["fullname"];
         $des = $_POST["description"];
         $license = $_POST["driverLicense"];
-
-        echo "new name = '$name'";
 
         $sql ="UPDATE Driver SET name='$name', driver_license='$license' WHERE user_id = '$user';";
         if ($link->query($sql) === true) {
@@ -31,6 +30,8 @@ switch($accType){
             echo 'Profile update 2 failed';
         }
         $link->close();
+
+        $_SESSION['flash'] = "$name, $license, $user";
         break;
 }
 

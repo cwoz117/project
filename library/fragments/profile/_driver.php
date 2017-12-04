@@ -1,5 +1,5 @@
 <div id="id01" class="w3-modal">
-  <div class="w3-modal-content w3-animate-top">
+  <div class="w3-modal-content w3-animate-top w3-round-large">
     <div class="w3-container">
       <h2 id="header"></h2>
     </div>
@@ -46,7 +46,7 @@
 </div>
 
 <div id="delete" class="w3-modal">
-  <div class="w3-modal-content w3-animate-top" style="max-width:300px">
+  <div class="w3-modal-content w3-animate-top w3-round-large" style="max-width:300px">
     <div class="w3-container">
       <h2 style="text-align:center">Delete Truck</h2>
     </div>
@@ -197,4 +197,14 @@
     </div>
   </div>
 </div>
-
+<script>
+  var deleteM = document.getElementById('delete');
+  var manageM = document.getElementById('id01');
+  window.onclick = function(event) {
+    if (event.target == manageM) {
+       manageM.style.display = "none";
+    } else if (event.target == deleteM) {
+       deleteM.style.display = "none";
+    }
+  }
+</script>

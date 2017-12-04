@@ -2,7 +2,7 @@
   require('fragments/_head.php');
   require('fragments/_nav.php');
 ?>
-<div class="w3-container"">
+<div class="w3-container">
 <div class="w3-card w3-section w3-round-large">
   <div class="w3-container" style="min-height:400px; padding-bottom: 20px;">
     <h2>Account Settings</h2>

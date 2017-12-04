@@ -1,4 +1,4 @@
-<style>
+<!--<style>
     input[type=text], select {
         width: 100%;
         padding: 12px 20px;
@@ -76,7 +76,7 @@
         padding: 10px;
     }
 
-</style>
+</style> -->
 
 <body>
 <?php
@@ -97,7 +97,7 @@ $banking = $_POST["bankinfo"];
 
 
 <div id="inputForm" class="right">
-    <form action="~/public/action/updateAccount.php" method="post">
+    <form action="action/updateAccount.php" method="post">
         <?php
         require("global/db.php");
 
@@ -107,7 +107,7 @@ $banking = $_POST["bankinfo"];
         $link->close();
         ?>
         <label for="name">Full name</label>
-        <input type="text" id="name" name="fullname" placeholder= <?php echo $result; ?>>
+        <input type="text" id="name" name="fullname" placeholder="hello">
 
 
         <!-- SQL Query to get profile description from database-->
@@ -121,7 +121,7 @@ $banking = $_POST["bankinfo"];
         $link->close();
         ?>
         <label>Profile description</label>
-        <form><textarea name="description" placeholder=<?php echo $row["profile_text"] ?>></textarea></form>
+        <textarea name="description" placeholder=<?php echo $row["profile_text"] ?>></textarea>
 
         <!-- SQL Query to get driver license from database-->
         <?php
@@ -150,18 +150,16 @@ $banking = $_POST["bankinfo"];
         <li class="w3-border"><a href='#'>Security</a></li>
     </ul>
 </div>
-
-<!--
-<div class="w3-container w3-cell">
-    <div class="w3-card w3-padding w3-section" style="min-height:200px;">
-        <ul class="w3-ul w3-hoverable">
-            <h2 class="w3-center">Trucks</h2>
-            <li class="w3-border">Truck A <span style="float:right;">Active</span></li>
-            <li class="w3-border">Truck B</li>
-            <li class="w3-border w3-center w3-light-grey" onclick="document.getElementById('id01').style.display='block'">
-                <i class='fa fa-plus-square-o'></i>
-            </li>
-        </ul>
-    </div>
-</div>
+  <div class="w3-container w3-cell">
+      <div class="w3-card w3-padding w3-section" style="min-height:200px;">
+          <ul class="w3-ul w3-hoverable">
+              <h2 class="w3-center">Trucks</h2>
+              <li class="w3-border">Truck A <span style="float:right;">Active</span></li>
+              <li class="w3-border">Truck B</li>
+              <li class="w3-border w3-center w3-light-grey" onclick="document.getElementById('id01').style.display='block'">
+                  <i class='fa fa-plus-square-o'></i>
+              </li>
+          </ul>
+      </div>
+  </div>
 -->

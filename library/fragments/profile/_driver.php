@@ -1,29 +1,28 @@
 <div id="id01" class="w3-modal">
   <div class="w3-modal-content w3-animate-top">
     <div class="w3-container">
-      <h2>Add a Truck</h2>
+      <h2 id="header"></h2>
     </div>
-    <form class="w3-container w3-card-4 w3-padding" action="action/add_a_truck.php" method="post">
-      <label class="w3-text-grey w3-padding-small">Registration</label>
-      <input type="text" class="w3-input w3-border" name="reg">  
-      <label class="w3-text-grey w3-padding-small">Insurance</label>
-      <input type="text" class="w3-input w3-border" name="insurance"> 
+    <form class="w3-container w3-card-4 w3-padding" action="action/manage_truck.php" method="post">
+      <input type="text" class="w3-hide" id="instruction" name="command">
+      <label class="w3-text-grey w3-padding-small" id="regLabel">Registration</label>
+      <input type="text" class="w3-input w3-border" id="regID" name="reg" pattern="[0-9]+">   
       <label class="w3-text-grey w3-padding-small">Provider</label>
-      <input type="text" class="w3-input w3-border" name="provider">  
+      <input type="text" class="w3-input w3-border" id="pvrID" name="provider" pattern=".{1,}">  
       <label class="w3-text-grey w3-padding-small">Policy Number</label>
-      <input type="text" class="w3-input w3-border" name="polNum">  
+      <input type="text" class="w3-input w3-border" id="polnumID" name="polNum">  
       <label class="w3-text-grey w3-padding-small">Plate Number</label>
-      <input type="text" class="w3-input w3-border" name="plate"> 
+      <input type="text" class="w3-input w3-border" id="plateID" name="plate"> 
       <label class="w3-text-grey w3-padding-small">Make</label>
-      <input type="text" class="w3-input w3-border" name="make">  
+      <input type="text" class="w3-input w3-border" id="makeID" name="make">  
       <label class="w3-text-grey w3-padding-small">Model</label>
-      <input type="text" class="w3-input w3-border" name="model">  
+      <input type="text" class="w3-input w3-border" id="modelID" name="model">  
       <label class="w3-text-grey w3-padding-small">Trailer Type</label>
-      <input type="text" class="w3-input w3-border" name="trailer" maxlength=2> 
+      <input type="text" class="w3-input w3-border" id="trailerID" name="trailer" maxlength=2> 
       <label class="w3-text-grey w3-padding-small">Year</label>
-      <input type="text" class="w3-input w3-border" name="year" pattern="[0-9]{2}"> 
+      <input type="text" class="w3-input w3-border" id="yearID" name="year" pattern="[0-9]{2}"> 
       <label class="w3-text-grey w3-padding-small">Province</label>
-      <select class="w3-input w3-border" name="prov"> 
+      <select required="required" class="w3-input w3-border" id="provID" name="prov"> 
          <option value="AB">Alberta</option>
          <option value="BC">British Columbia</option>  
          <option value="MB">Manitoba</option>
@@ -75,10 +74,35 @@
 		}
 	}
 
-	function editTruckInfo(reg, cID, pvr, polnum, plate, make, model, year, prov, trailer) {i
-
-
-
+	function manageTruck(command, reg, pvr, polnum, plate, make, model, year, prov, trailer) {
+		document.getElementById("instruction").value=command;
+		var truckPK=document.getElementById("regID");
+		var labelPK=document.getElementById("regLabel");
+		
+		//Add Command
+		if (command == 0) {
+		  document.getElementById("header").innerHTML="Add truck";
+		  reg = pvr = polnum = plate = make = model = year = prov = trailer = "";
+		  if (truckPK.className.indexOf("w3-hide") != -1) {
+		     truckPK = truckPK.className.replace(" w3-hide", "");
+		     labelPK = labelPK.className.replace(" w3-hide", "");
+		  }
+		//Edit Command
+		} else {
+	          document.getElementById("header").innerHTML="Edit truck";
+		truckPK.value=reg;
+		truckPK.className += " w3-hide";
+		labelPK.className += " w3-hide";
+		}
+		document.getElementById("pvrID").value=pvr;
+		document.getElementById("polnumID").value=polnum;
+		document.getElementById("plateID").value=plate;
+		document.getElementById("makeID").value=make;
+		document.getElementById("modelID").value=model;
+		document.getElementById("yearID").value=year;
+		document.getElementById("provID").value=prov;
+		document.getElementById("trailerID").value=trailer;
+		document.getElementById('id01').style.display = 'block';	
 	}
 </script>
 
@@ -124,10 +148,9 @@
 		  $model = $row["model"];
                   $year = $row["year"];
                   $prov = $row["province"];
-                  $trailer = $row["trailer"];
+                  $trailer = $row["trailer_type"];
 		  $truckNum = $index+1;
-                  echo "
-                          <li id='title' class='w3-display-container w3-border-blue w3-light-grey w3-bottombar'>$year $model $make Truck, License Plate $plate
+                  echo "<li id='title' class='w3-display-container w3-border-blue w3-light-grey w3-bottombar'>$year $model $make Truck, License Plate $plate
 			    <span class='w3-button w3-display-left w3-border-right'  id='view' onclick=\"toggleView($index)\" >View</span>
 			    <button class='w3-button w3-display-right w3-border-left' id='close' onclick=\"confirmDelete($reg)\">&times;</button>
 			  </li>
@@ -141,7 +164,7 @@
                                 </tr>
                                 <tr class='w3-border'>
                                   <th>Provider</th>
-                                  <th>$prov</th
+                                  <th>$pro</th
                                 </tr>
                                 <tr class='w3-border'>
                                   <th>Policy Number</th>
@@ -156,11 +179,9 @@
                                   <th>$trailer</th
                                 </tr>
                               </table>
-                              <button class='w3-button w3-right w3-blue w3-margin-bottom' onclick=\"\">Edit</button>
+                              <button class='w3-button w3-right w3-blue w3-margin-bottom' onclick=\"manageTruck(1, '$reg', '$pro', '$polnum', '$plate', '$make', '$model', '$year', '$trailer')\">Edit</button>
                             </div>
-                          </div>
-                          
-                        ";
+                          </div>";
                 }
               } else {
 		echo "You currently have not registered a truck.<br>";
@@ -170,7 +191,7 @@
           ?>
           <!--<li class="w3-border">Truck A <span style="float:right;">Active</span></li>
           <li class="w3-border">Truck B</li> -->
-          <li class="w3-border w3-center w3-light-grey" onclick="document.getElementById('id01').style.display='block'">
+          <li class="w3-border w3-center w3-light-grey" onclick="manageTruck(0)">
 
             <i class='fa fa-plus-square-o'></i>
           </li>
@@ -180,16 +201,3 @@
   </div>
 </div>
 
-			     <!-- <h4 class='w3-border'>Registration</h4>
-			      <p> $reg </p>
-			      <h4 class='w3-border'>Provider</h4>
-			      <p> $pro </p>
-			      <h4 class='w3-border'>Policy Number</h4>
-		              <p> $polnum </p>
-			      <h4 class='w3-border'>Plate Number</h4>
-			      <p> $plate </p>
-			      <h4 class='w3-border'>Province</h4>
-			      <p> $prov </p>
-			      <h4 class='w3-border'>Trailer Type</h4>
-			      <p> $trailer </p>
-		              <button class='w3-button w3-display-right w3-border w3-blue' id='edit'>Edit</button> -->

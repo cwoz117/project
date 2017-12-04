@@ -40,7 +40,7 @@
       margin: 0;
     }
     .bg {
-      background-image: url('Truck2.jpg');
+      background-image: url('Truck.jpg');
       height: 100%;
       background-position: center;
       background-repeat: no-repeat;

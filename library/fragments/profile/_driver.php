@@ -21,7 +21,7 @@
       <label class="w3-text-grey w3-padding-small">Trailer Type</label>
       <input type="text" class="w3-input w3-border" name="trailer" maxlength=2> 
       <label class="w3-text-grey w3-padding-small">Year</label>
-      <input type="number" class="w3-input w3-border" name="year" max=99>  
+      <input type="text" class="w3-input w3-border" name="year" pattern="[0-9]{2}"> 
       <label class="w3-text-grey w3-padding-small">Province</label>
       <select class="w3-input w3-border" name="prov"> 
          <option value="AB">Alberta</option>

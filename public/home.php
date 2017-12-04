@@ -26,6 +26,10 @@
     xmlhttp.open("GET", "action/fill_active_orders.php", true);
     xmlhttp.send();
   }
+
+  function getPayloads(id) {
+   
+  }
 </script>
 
 <div class="w3-container">
@@ -93,31 +97,30 @@
 </div>
 
 
-<!-- Workorder Adding Modal
+<!-- Workorder Adding Modal -->
 <div class="w3-modal" id="addWO">
   <div class="w3-modal-content w3-animate-top w3-round-large">
     <div class="w3-container">
-      <h2>Add Payload</h2>
+      <h2>Add Workorder</h2>
     </div>
-    <form class="w3-container w3-card-4 w3-padding" action="action/add_payload.php" method="POST">
-      <label class="w3-text-grey w3-padding-small">Asset Value</label>
-      <input class="w3-input w3-:qborder" type="number" name="assetV"> 
-      <label class="w3-text-grey w3-padding-small">Cargo </label>
-      <input class="w3-input w3-border"  type=="text" name="cargotype" maxlength=2 required> 
-      <label class="w3-text-grey w3-padding-small">Gross Weight</label>
-      <input class="w3-input w3-border"  type=="number" name="weight" required> 
-      <label class="w3-text-grey w3-padding-small">Contact Info</label>
-      <input class="w3-input w3-border"  type=="text" name="contact" required>
-      <label class="w3-text-grey w3-padding-small">Manifest</label>
-      <input class="w3-input w3-border" type=="text" name="manifest" required> 
+    <form class="w3-container w3-card-4 w3-padding" action="action/add_workorder.php" method="POST">
+      <label class="w3-text-grey w3-padding-small">Workorder Number</label>
+      <input class="w3-input w3-:qborder" type="text" name="woNum" pattern="[0-9].{1,20}" title="Must be a number between 1 to 20 characters" required> 
+      <label class="w3-text-grey w3-padding-small">Pickup Address</label>
+      <input class="w3-input w3-border"  type=="text" name="pAddr" maxlength=2 required> 
+      <label class="w3-text-grey w3-padding-small">Dropoff Address</label>
+      <input class="w3-input w3-border"  type=="number" name="dAddr" required> 
+      <label class="w3-text-grey w3-padding-small">Start Time</label>
+      <input class="w3-input w3-border"  type=="date" name="start" required>
+      <label class="w3-text-grey w3-padding-small">Deadline</label>
+      <input class="w3-input w3-border" type=="date" name="dead" required> 
+      <label class="w3-text-grey w3-padding-small">Contract Price</label>
+      <input class="w3-input w3-border" type=="number" name="price" required> 
       <input class="w3-button w3-margin-top w3-round w3-align-left" type="submit" value="Create">
       <a href="" class="w3-button w3-margin-top w3-round w3-align-right">Cancel</a>  
     </form>
   </div>
-</div> -->
-
-
-
+</div> 
 
 <?php
   require('fragments/_footer.php');

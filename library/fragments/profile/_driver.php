@@ -108,17 +108,13 @@
 
 <div class="w3-container">
   <div class="w3-card w3-section w3-round-large">
-
-    <div class="w3-container w3-cell" style="width:400px;">
-      <h2 class="w3-bottombar w3-round"><?php echo "Welcome "; echo $_SESSION["name"]?> </h2>
-      <p>
-      </p>
+    <div class="w3-container w3-cell" style="width:60%;">
+      <h2 class="w3-bottombar w3-round"><?php echo "Welcome "; echo $_SESSION['driverName'] ?> </h2>
       <p>
         <?php 
            $profile = $_SESSION["profile"];
            if ($profile == "") {
-              echo "Tell everyone about yourself";
-
+              echo "Tell everyone about yourself here!";
            } else {
               echo $profile;
 

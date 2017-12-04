@@ -17,18 +17,20 @@
     $_SESSION['type'] = $row['acc_type'];
     $_SESSION['profile'] = $row['profile_text']; 
     $id = $row['user_id'];
-   
-    if ($_SESSION['type'] === 1) {
+    
+    if ($_SESSION['type'] == 1) {
       $_SESSION['testo'] = "hello world";
       $corporate_sql = "SELECT * from Company where user_id = '$id';";
       $corporate = $link->query($corporate_sql)->fetch_assoc();
       $_SESSION['company_name'] = $corporate['name'];
 
 
-    } else if ($_SESSION['type'] === 2) {
-
-      $driver = "select * from Driver where user_id = $id;";
+    } else if ($_SESSION['type'] == 2) {
+ 
+      $sql = "select * from Driver where user_id = '$id';";
+      $driver = $link->query($sql)->fetch_assoc();
       $_SESSION['driverName'] = $driver['name'];
+
     }
 
     $redirect = "../home.php";

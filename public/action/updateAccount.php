@@ -5,7 +5,6 @@ require("global/db.php");
 $user = $_SESSION['userID'];
 $accType = $_SESSION['type'];
 
-$_SESSION['flash'] = $accType;
 
 switch($accType){
     case 1:

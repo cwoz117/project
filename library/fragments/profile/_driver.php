@@ -12,7 +12,7 @@
       <label class="w3-text-grey w3-padding-small">Policy Number</label>
       <input type="text" class="w3-input w3-border" id="polnumID" name="polNum" pattern=".{1,10}" title="Must be between 1 to 10 characters" required>  
       <label class="w3-text-grey w3-padding-small">Plate Number</label>
-      <input type="text" class="w3-input w3-border" id="plateID" name="plate" pattern=".{1,8}" title="Must be between 1 to 8 characters" required> 
+      <input type="text" class="w3-input w3-border" id="plateID" name="plate" pattern="[A-Z0-9].{1,8}" title="Must be between 1 to 8 characters with only capital letters and numbers" required> 
       <label class="w3-text-grey w3-padding-small">Make</label>
       <input type="text" class="w3-input w3-border" id="makeID" name="make" pattern=".{1,15}" title="Must be between 1 to 15 characters" required>  
       <label class="w3-text-grey w3-padding-small">Model</label>

@@ -18,7 +18,8 @@
       x[i].style.display = "none";
     }
     document.getElementById(formName).style.display = "block";
-  }  
+  }
+
   
   function check_pass(buttonName, passN, rePassN, error) {
     if (document.getElementById(passN).value == document.getElementById(rePassN).value) {

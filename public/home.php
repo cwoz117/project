@@ -67,9 +67,40 @@
 </div>
 </div>
 </div>
+
+
+<!-- Payload Adding Modal -->
+<div class="w3-modal" id="addPayload">
+  <div class="w3-modal-content w3-animate-top w3-round-large">
+    <div class="w3-container">
+      <h2>Add Payload</h2>
+    </div>
+    <form class="w3-container w3-card-4 w3-padding" action="action/add_payload.php" method="POST">
+      <label class="w3-text-grey w3-padding-small">Asset Value</label>
+      <input class="w3-input w3-border" type="number" name="assetV"> 
+      <label class="w3-text-grey w3-padding-small">Cargo </label>
+      <input class="w3-input w3-border"  type=="text" name="cargotype" maxlength=2 required> 
+      <label class="w3-text-grey w3-padding-small">Gross Weight</label>
+      <input class="w3-input w3-border"  type=="number" name="weight" required> 
+      <label class="w3-text-grey w3-padding-small">Contact Info</label>
+      <input class="w3-input w3-border"  type=="text" name="contact" required>
+      <label class="w3-text-grey w3-padding-small">Manifest</label>
+      <input class="w3-input w3-border" type=="text" name="manifest" required> 
+      <input class="w3-button w3-margin-top w3-round w3-align-left" type="submit" value="Create">
+      <a href="" class="w3-button w3-margin-top w3-round w3-align-right">Cancel</a>  
+    </form>
+  </div>
+</div>
+
+
+
 <?php
   require('fragments/_footer.php');
 ?>
+
+
+
+
 
 
 <!--

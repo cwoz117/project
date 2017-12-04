@@ -24,10 +24,10 @@
       $corporate = $link->query($corporate_sql)->fetch_assoc();
       $_SESSION['company_name'] = $corporate['name'];
 
+
     } else if ($_SESSION['type'] === 2) {
 
       $driver = "select * from Driver where user_id = $id;";
-
       $_SESSION['driverName'] = $driver['name'];
     }
 

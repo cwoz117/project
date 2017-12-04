@@ -2,6 +2,7 @@
   session_start();
   $user = $_POST["username"];
   $pass = $_POST["password"];  
+  $name = $_POST["name"];
   $wcb = $_POST["wcb"];
   $lic = $_POST["license"];
   $banking = $_POST["bankinfo"];
@@ -37,7 +38,7 @@
       }
   
       #Inserting entry into just driver for now
-      $sql = "insert into Driver(user_id, wcb_no, driver_license, banking_info, contractor_id) values ($userID, '$wcb', '$lic', '$banking', $cID);";
+      $sql = "insert into Driver(user_id, name, wcb_no, driver_license, banking_info, contractor_id) values ($userID, '$name', '$wcb', '$lic', '$banking', $cID);";
       if ($link->query($sql) == false) 
          $_SESSION['flash'] = "Account could not be created properly";
 

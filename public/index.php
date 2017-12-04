@@ -106,6 +106,8 @@
       <input class="w3-input w3-round" type="password" id="passD" name="password" onblur="check_pass('submitD','passD', 'repassD', 'pwd_error')" pattern=".{4,}" title="Password must be longer than 4 characters" required>
       <label>Re-enter Password:</label> 
       <input class="w3-input w3-round" type="password" id="repassD" name="repass" onblur="check_pass('submitD', 'passD', 'repassD' ,'pwd_error')">
+      <label>Name:</label> 
+      <input class="w3-input w3-round" type="text" name="name" required>
       <label>WCB number:</label> 
       <input class="w3-input w3-round" type="text" name="wcb" pattern="[0-9]+" required>
       <label>Driver License:</label> 

@@ -6,21 +6,21 @@
     <form class="w3-container w3-card-4 w3-padding" action="action/manage_truck.php" method="post">
       <input type="text" class="w3-hide" id="instruction" name="command">
       <label class="w3-text-grey w3-padding-small" id="regLabel">Registration</label>
-      <input type="text" class="w3-input w3-border" id="regID" name="reg" pattern="[0-9]+">   
+      <input type="text" class="w3-input w3-border" id="regID" name="reg" pattern="[0-9].{3,10}" title="Must be between 3 to 10 characters" required>   
       <label class="w3-text-grey w3-padding-small">Provider</label>
-      <input type="text" class="w3-input w3-border" id="pvrID" name="provider" pattern=".{1,}">  
+      <input type="text" class="w3-input w3-border" id="pvrID" name="provider" pattern=".{1,30}" title="Must be between 3 to 30 characters" required>  
       <label class="w3-text-grey w3-padding-small">Policy Number</label>
-      <input type="text" class="w3-input w3-border" id="polnumID" name="polNum">  
+      <input type="text" class="w3-input w3-border" id="polnumID" name="polNum" pattern=".{1,10}" title="Must be between 1 to 10 characters" required>  
       <label class="w3-text-grey w3-padding-small">Plate Number</label>
-      <input type="text" class="w3-input w3-border" id="plateID" name="plate"> 
+      <input type="text" class="w3-input w3-border" id="plateID" name="plate" pattern=".{1,8}" title="Must be between 1 to 8 characters" required> 
       <label class="w3-text-grey w3-padding-small">Make</label>
-      <input type="text" class="w3-input w3-border" id="makeID" name="make">  
+      <input type="text" class="w3-input w3-border" id="makeID" name="make" pattern=".{1,15}" title="Must be between 1 to 15 characters" required>  
       <label class="w3-text-grey w3-padding-small">Model</label>
-      <input type="text" class="w3-input w3-border" id="modelID" name="model">  
+      <input type="text" class="w3-input w3-border" id="modelID" name="model" pattern=".{1,15}" title="Must be between 1 to 15 characters" required>  
       <label class="w3-text-grey w3-padding-small">Trailer Type</label>
-      <input type="text" class="w3-input w3-border" id="trailerID" name="trailer" maxlength=2> 
+      <input type="text" class="w3-input w3-border" id="trailerID" name="trailer" maxlength=2 required> 
       <label class="w3-text-grey w3-padding-small">Year</label>
-      <input type="text" class="w3-input w3-border" id="yearID" name="year" pattern="[0-9]{2}"> 
+      <input type="text" class="w3-input w3-border" id="yearID" name="year" pattern="[0-9]{2}" required> 
       <label class="w3-text-grey w3-padding-small">Province</label>
       <select required="required" class="w3-input w3-border" id="provID" name="prov"> 
          <option value="AB">Alberta</option>

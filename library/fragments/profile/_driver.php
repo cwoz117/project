@@ -38,7 +38,7 @@
          <option value="YT">Yukon</option>  
       </select> 
       <span>
-      <input class="w3-button w3-margin-top w3-blue w3-round w3-align-left" type="submit" value="Add">
+      <input class="w3-button w3-margin-top w3-blue w3-round w3-align-left" type="submit" value="Confirm">
       <a href="profile.php" class="w3-button w3-margin-top w3-red w3-round w3-align-right">Cancel</a>
       </span>
     </form>
@@ -186,16 +186,13 @@
               } else {
 		echo "You currently have not registered a truck.<br>";
               }      
-   
-
           ?>
-          <!--<li class="w3-border">Truck A <span style="float:right;">Active</span></li>
-          <li class="w3-border">Truck B</li> -->
           <li class="w3-border w3-center w3-light-grey" onclick="manageTruck(0)">
 
             <i class='fa fa-plus-square-o'></i>
           </li>
         </ul>
+        <p class="w3-red w3-center"> <?php echo $_SESSION['flash']; $_SESSION['flash'] = "" ?> </p>
       </div>
     </div>
   </div>

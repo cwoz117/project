@@ -9,7 +9,7 @@
   require("global/db.php");  
 
   #Checking if username is used
-  $sql = "select $username from User;";
+  $sql = "select username from User;";
   $result = $link->query($sql);
   
     if ($result->num_rows > 0) {
@@ -39,7 +39,7 @@
       #Inserting entry into just driver for now
       $sql = "insert into Driver(user_id, wcb_no, driver_license, banking_info, contractor_id) values ($userID, '$wcb', '$lic', '$banking', $cID);";
       if ($link->query($sql) == false) 
-        echo " motherfucker";
+         $_SESSION['flash'] = "Account could not be created properly";
 
     } 
   $link->close();

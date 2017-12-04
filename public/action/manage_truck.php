@@ -39,6 +39,7 @@ if ($command == 0) {
 
 	if ($result->num_rows > 0) {
 		echo "Check failed <br>";
+		$_SESSION['flash'] = "Registration number is already in use";
 		exit();	
 	}
 	##################################################
@@ -46,21 +47,23 @@ if ($command == 0) {
 
 	$sql = "insert into Truck(registration, contractor_id, provider, policy_num, plate_num, make, model, year, province, trailer_type) values ('$reg', $conID, '$pvdr', '$polNum', '$plate', '$make', '$model', '$year', '$prov', '$trailer');";
 
-	if ($link->query($sql) === true) 
+	if ($link->query($sql) === true) {
 		echo "Success";
-	else 
+	} else {
 		echo "Failed";
-	
+		$_SESSION['flash'] = "Error: Truck could not be added";
+	}
 } else {
 #Command is to edit
 
 	$sql = "update Truck set provider = '$pvdr', policy_num = '$polNum', plate_num = '$plate', make = '$make', model = '$model', trailer_type = '$trailer', year = '$year', province = '$prov' where registration = $reg;";
 
 
-	if ($link->query($sql) === true) 
+	if ($link->query($sql) === true) {
 		echo "Success";
-	else
+	} else {
 		echo "Failure";
-
+		$_SESSION['flash'] = "Error: Truck could not be modified";
+	}
 }
 $link->close();

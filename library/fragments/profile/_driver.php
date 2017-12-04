@@ -90,10 +90,10 @@
 		//Edit Command
 		} else {
 	          document.getElementById("header").innerHTML="Edit truck";
-		truckPK.value=reg;
-		truckPK.className += " w3-hide";
-		labelPK.className += " w3-hide";
+		  truckPK.className += " w3-hide";
+		  labelPK.className += " w3-hide";
 		}
+		truckPK.value=reg;
 		document.getElementById("pvrID").value=pvr;
 		document.getElementById("polnumID").value=polnum;
 		document.getElementById("plateID").value=plate;
@@ -150,7 +150,7 @@
                   $prov = $row["province"];
                   $trailer = $row["trailer_type"];
 		  $truckNum = $index+1;
-                  echo "<li id='title' class='w3-display-container w3-border-blue w3-light-grey w3-bottombar'>$year $model $make Truck, License Plate $plate
+                  echo "<li id='title' class='w3-display-container w3-border-blue w3-light-grey w3-bottombar'>$year' $model $make Truck, License Plate $plate
 			    <span class='w3-button w3-display-left w3-border-right'  id='view' onclick=\"toggleView($index)\" >View</span>
 			    <button class='w3-button w3-display-right w3-border-left' id='close' onclick=\"confirmDelete($reg)\">&times;</button>
 			  </li>
@@ -179,7 +179,7 @@
                                   <th>$trailer</th
                                 </tr>
                               </table>
-                              <button class='w3-button w3-right w3-blue w3-margin-bottom' onclick=\"manageTruck(1, '$reg', '$pro', '$polnum', '$plate', '$make', '$model', '$year', '$trailer')\">Edit</button>
+                              <button class='w3-button w3-right w3-blue w3-margin-bottom' onclick=\"manageTruck(1, '$reg', '$pro', '$polnum', '$plate', '$make', '$model', '$year', '$prov', '$trailer')\">Edit</button>
                             </div>
                           </div>";
                 }

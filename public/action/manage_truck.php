@@ -54,7 +54,7 @@ if ($command == 0) {
 } else {
 #Command is to edit
 
-	$sql = "update Truck set provider = '$pvdr', policy_num = '$polNum', plate_num = '$plate', make = '$make', model = '$model', trailer_type = '$trailer', year = '$year' where registration = $reg;";
+	$sql = "update Truck set provider = '$pvdr', policy_num = '$polNum', plate_num = '$plate', make = '$make', model = '$model', trailer_type = '$trailer', year = '$year', province = '$prov' where registration = $reg;";
 
 
 	if ($link->query($sql) === true) 

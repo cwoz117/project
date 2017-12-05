@@ -1,5 +1,5 @@
 <div id="id01" class="w3-modal">
-  <div class="w3-modal-content w3-animate-top w3-round-large">
+  <div class="w3-modal-content w3-animate-top w3-round-large" style="max-width:50%">
     <div class="w3-container">
       <h2 id="header"></h2>
     </div>

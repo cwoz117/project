@@ -16,7 +16,7 @@
   
     if ($result->num_rows > 0) {
       $_SESSION['flash'] = "Username already in use";
-  
+      $_SESSION['flash_color'] = " w3-red";
     } else {
 
       $userID;
@@ -34,15 +34,26 @@
       $cID;
       if ($link->query($sql) === true) {
         $cID = (int) $link->insert_id;
+        echo "This is $cID";
       } else {
        echo "Something messed up in register into Contractor.";
       }
   
       #Inserting entry into just driver for now
-      $sql = "insert into Driver(user_id, name, wcb_no, driver_license, banking_info, contractor_id) values ($userID, '$name', '$wcb', '$lic', '$banking', $cID);";
-      if ($link->query($sql) == false) 
+      $sql = "insert into Driver(user_id, name, wcb_no, driver_license, banking_info, contractor_id) values ('$userID', '$name', '$wcb', '$lic', '$banking', '$cID');";
+      if ($link->query($sql) == false) {
+         $_SESSION['flash_color'] = " w3-red";
          $_SESSION['flash'] = "Account could not be created properly";
-
+         $sql = "delete from Contractor where contractor_id = '$cID';";
+         $link->query($sql);
+         $sql = "delete from User where user_id = '$userID';";
+         $link->query($sql);
+         
+      } else {
+         $_SESSION['flash_color'] = " w3-green";
+         $_SESSION['flash'] = "Account successfully created";
+ 
+      }
     } 
   $link->close();
 

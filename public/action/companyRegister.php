@@ -13,6 +13,7 @@ $result = $link->query($sql);
 
 if ($result->num_rows > 0) {
   $_SESSION['flash'] = "That Username is already in use";
+  $_SESSION['flash_color'] = " w3-red";
   header("Location: ../index.php");
   $link->close();
 	exit();
@@ -23,16 +24,28 @@ $sql = "insert into User (username, password, acc_type) values ('$user', '$pass'
 
 #Retrieving the ID of last insert
 $userID;
-if ($link->query($sql) === true)
+if ($link->query($sql) === true) {
 	$userID = (int) $link->insert_id;
-else
+} else {
   $_SESSION['flash'] = "This company could not be entered into the database. Error: $link->error";
+  $_SESSION['flash_color'] = " w3-red";
+}
 
 
 
 $sql = "insert into Company (user_id, name, banking_info, address) values ($userID, '$compName', $bank, '$addr');";
 
-$link->query($sql);
+if ($link->query($sql) === false) {
+  $_SESSION['flash_color'] = " w3-red";
+  $_SESSION['flash'] = "Company could not be created";
+  $sql = "delete from User where user_id = '$userID';";
+  $link->query($sql);
+
+
+} else {
+  $_SESSION['flash_color'] = " w3-green";
+  $_SESSION['flash'] = "Company created successfully";
+}
 $link->close();
 
 header("Location: ../index.php");

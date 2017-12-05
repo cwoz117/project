@@ -15,17 +15,17 @@
       }
     }
 
-    function acceptContract(id){
+    function acceptContract(id, payload, company){
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("market_tub").innerHTML = this.responseText;
+          location.reload();
         }
       };
       
       xmlhttp.open("POST", "action/accept_contract.php", true);
       xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      xmlhttp.send("workorder_no=" + id);
+      xmlhttp.send("workorder_no=" + id + "&payload_id=" + payload + "&company_id=" + company);
     }
     function fillMarket(){
       var xmlhttp = new XMLHttpRequest();

@@ -11,6 +11,7 @@
 
   #Checking if username is used
   $sql = "select * from User where username = $user;";
+
   $result = $link->query($sql);
   
     if ($result->num_rows > 0) {

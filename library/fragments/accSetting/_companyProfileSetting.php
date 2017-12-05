@@ -56,11 +56,11 @@ $userID = $_SESSION['userID'];
         echo $row["name"];
         ?>
         <label for="name">Company Name</label>
-        <input type="text" id="name" name="companyName" placeholder=<?php echo $row["name"]?>>
+        <input type="text" id="name" name="companyName" maxlength="250" placeholder=<?php echo $row["name"]?>>
 
 
         <label>Company description</label>
-        <textarea name="description" placeholder="Enter profile description..."></textarea>
+        <textarea name="description" maxlength="250" placeholder="Enter profile description..."></textarea>
 
         <!-- SQL Query to get driver license from database-->
         <?php

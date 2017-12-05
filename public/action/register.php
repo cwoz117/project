@@ -25,7 +25,7 @@
       if ($link->query($sql) === true) {
         $userID = (int) $link->insert_id; 
       } else {
-        echo 'soemthing dun fucked up';
+        echo 'Something messed up in register into User.';
       }
 
     #Creation of a contractor
@@ -35,7 +35,7 @@
       if ($link->query($sql) === true) {
         $cID = (int) $link->insert_id;
       } else {
-       echo "some error happened here";
+       echo "Something messed up in register into Contractor.";
       }
   
       #Inserting entry into just driver for now

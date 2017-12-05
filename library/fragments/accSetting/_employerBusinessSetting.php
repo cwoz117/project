@@ -56,7 +56,7 @@ $userID = $_SESSION['userID'];
         $link->close();
         ?>
         <label for="busID">WCB Number</label>
-        <input type="text" id="busID" name="busID" placeholder=<?php echo $result["business_id"]?>>
+        <input type="text" id="busID" name="busID" pattern=".{4,}" title="WCB number must be longer that 4 characters" placeholder=<?php echo $result["business_id"]?>>
 
         <?php
         require("global/db.php");
@@ -66,7 +66,7 @@ $userID = $_SESSION['userID'];
         $link->close();
         ?>
         <label for="banking">Banking Information</label>
-        <input type="text" id = "banking" name="banking" placeholder=<?php echo $result["banking_info"]?>>
+        <input type="text" id = "banking" name="banking" pattern=".{4,}" title="Bank info must be longer that 4 characters" placeholder=<?php echo $result["banking_info"]?>>
 
         <input class="w3-button w3-blue w3-round w3-margin-top" type = "submit" value="Submit">
     </form>

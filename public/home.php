@@ -20,7 +20,7 @@
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        document.getElementById().innerHTML = this.responseText;
+        document.getElementById('active_orders').innerHTML = this.responseText;
       }
     };
     xmlhttp.open("GET", "action/fill_active_orders.php", true);
@@ -32,16 +32,6 @@
 <div class="w3-card w3-section w3-round-large">
 <div class="w3-container" style="min-height:400px;">
  <!-- 
-      <h2>Home</h2>
-      <div class="w3-card w3-round-large w3-white">
-        <header class="w3-container w3-blue w3-center" style="border-top-right-radius:8px;border-top-left-radius:8px";>
-          Active Deliveries
-        </header>
-        <div id="active_orders" class="w3-container w3-margin" style="min-height:400px;"> -->
-          <!--<script type="text/javascript">getActiveOrders();</script> -->
-  <h2>Home</h2>
-  <div class="w3-container w3-twothird" style="min-height:inherit;">
-    <div class="w3-container w3-padding w3-margin w3-card w3-round-large" style="min-height:inherit;">
           <button id="b1" onclick="expandActive('1')"
                   class="w3-btn w3-block w3-left-align w3-round w3-border">Active Order 1</button>
           <div id="1" class="w3-container w3-hide">
@@ -50,6 +40,16 @@
               <p>Some information of a cool active order in transit!</p>
             </div>
           </div>
+      <h2>Home</h2>
+      <div class="w3-card w3-round-large w3-white">
+        <header class="w3-container w3-blue w3-center" style="border-top-right-radius:8px;border-top-left-radius:8px";>
+          Active Deliveries
+        </header>
+        <div id="active_orders" class="w3-container w3-margin" style="min-height:400px;"> -->
+  <h2>Home</h2>
+  <div class="w3-container w3-twothird" style="min-height:inherit;">
+    <div id="active_orders" class="w3-container w3-padding w3-margin w3-card w3-round-large" style="min-height:inherit;">
+          <script type="text/javascript">getActiveOrders();</script>
     </div>
   </div>
 

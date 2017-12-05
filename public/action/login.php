@@ -22,7 +22,6 @@
       $corporate_sql = "SELECT * from Company where user_id = '$id';";
       $corporate = $link->query($corporate_sql)->fetch_assoc();
       $_SESSION['company_name'] = $corporate['name'];
-
     }
 
 

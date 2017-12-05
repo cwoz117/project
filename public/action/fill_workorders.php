@@ -25,7 +25,7 @@ function printRows($result, $userID) {
                       </li>
 			<div class='w3-border w3-container w3-hide' id='w$index'>
 			  <div class=w3-container>
-			  <h4><b> Payload details </b></h4>
+			  <h4><b> Workorder details </b></h4>
 			    <table class='w3-table'>
 			      <tr class='w3-border'>
 			        <th style='font-weight:normal'>Pick-up Address</th>

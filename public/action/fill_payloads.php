@@ -13,8 +13,8 @@ function printRows($result, $userID) {
 
 		echo "<li id='title' class='w3-bar'>
 			<header class='w3-bar-item'>Payload ID: $payID</header>
-			<button class='w3-button w3-bar-item w3-right w3-red w3-round' onclick=\"deleteObject($payID, 0)\">Delete</button>
-			<button class='w3-button w3-bar-item w3-right w3-round' onclick=\"editPayload($payID, '$manifest', '$assetV', '$cargo', '$weight', '$contact')\">Edit</button>    
+			<button class='w3-button w3-bar-item w3-right w3-red w3-round' onclick=\"deleteObject('0', '$payID')\">Delete</button>
+			<button class='w3-button w3-bar-item w3-right w3-round' onclick=\"editPayload('$payID', '$manifest', '$assetV', '$cargo', '$weight', '$contact')\">Edit</button>    
 			<button class='w3-button w3-bar-item w3-right w3-round' onclick=\"toggleView('p'+$index)\">View</button>	     
                       </li>
 			<div class='w3-border w3-container w3-hide' id='p$index'>

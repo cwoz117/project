@@ -1,4 +1,3 @@
-
 <script>
     function expandActive(id){
         var x = document.getElementById(id);
@@ -55,9 +54,55 @@
                 document.getElementById("workorder_tub").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET", "action/fill_workorder.php", true);
+        xmlhttp.open("GET", "action/fill_completed_workorders.php", true);
         xmlhttp.send();
     }
+
+
+    //Info Codes
+    //0 = active workorders
+    //1 = completed workorders
+    function getInfo(infoCode){
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if (infoCode == 0) {
+                    document.getElementById('activeOrders').innerHTML = this.responseText;
+                } else if (infoCode == 1) {
+                    document.getElementById('completedOrders').innerHTML = this.responseText;
+                } else{
+
+                }
+            }
+        };
+
+        if (infoCode == 0)
+            xmlhttp.open("GET", "action/fill_active_workorders.php", true);
+        else if (infoCode == 1)
+            xmlhttp.open("GET", "action/fill_completed_workorders.php", true);
+        // else
+
+        xmlhttp.send();
+    }
+
+
+    //CallerTab
+    //0 = Show active orders
+    //1 = completed orders
+    function switchView(callerTab) {
+        switch (callerTab) {
+            case 0:
+                document.getElementById('activeOrders').style.display = 'block';
+                document.getElementById('completedOrders').style.display = 'none';
+                break;
+
+            case 1:
+                document.getElementById('activeOrders').style.display = 'none';
+                document.getElementById('completedOrders').style.display = 'block';
+                break;
+        }
+    }
+
 
 
 </script>
@@ -66,6 +111,26 @@
     <div class="w3-card w3-section w3-round-large">
         <div class="w3-container" style="min-height:400px;">
             <h2>Home</h2>
+
+            <div class="w3-container w3-twothird" style="min-height:inherit;">
+                <header class="w3-bar w3-card w3-round-large">
+                    <button class="w3-bar-item w3-button" onclick="switchView(0);"> Active Orders </button>
+                    <button class="w3-bar-item w3-button" onclick="switchView(1);"> Completed Orders </button>
+                </header>
+                <div id="activeOrders" class="w3-container w3-bar w3-padding w3-margin w3-card w3-round-large" style="min-height:inherit;">
+                    <script type="text/javascript">getInfo(0);</script>
+                </div>
+                <div id="completedOrders" class="w3-container w3-bar w3-padding w3-margin w3-card w3-round-large" style="min-height:inherit; display:none">
+                    <script type="text/javascript">getInfo(1);</script>
+                </div>
+
+            </div>
+
+
+
+
+
+            <!--   Old code w/ quicklink bar
             <div class="w3-container w3-twothird" style="min-height:inherit;">
                 <div id="active_orders" class="w3-container w3-padding w3-margin w3-card w3-round-large" style="min-height:inherit;">
                     <h3 class="w3-center">Orders in Progress</h3><hr>
@@ -85,6 +150,7 @@
                     </ul>
                 </div>
             </div>
+            -->
 
         </div>
     </div>
@@ -92,7 +158,7 @@
 
 
 
-<!-- View jobs Modal -->
+<!-- View jobs Modal
 <div class="w3-modal" id="viewCompletedJobs">
     <div class="w3-modal-content w3-animate-top w3-round-large">
         <div class="w3-container">
@@ -118,4 +184,4 @@
     }
 </script>
 
-
+-->

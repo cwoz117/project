@@ -22,7 +22,9 @@ header("Location: ../profile.php");
 
 $sql = "select contractor_id from Driver where '$userID' = user_id;";
 
-$conID = (int) $link->query($sql);
+$result = $link->query($sql);
+$row = $result->fetch_assoc();
+$conID = $row['contractor_id'];
 
 #echo "The command is : $command <br>";
 #echo "Registration is : $reg <br>";

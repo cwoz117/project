@@ -1,4 +1,5 @@
 <?php
+session_start();
 $user = $_POST["username"];
 $pass = $_POST["password"];
 $compName = $_POST["companyname"];
@@ -7,12 +8,12 @@ $addr = $_POST["address"];
 	
 require("global/db.php");
 	
-$sql = "select $username from User;";
+$sql = "select username from User;";
 $result = $link->query($sql);
 
 if ($result->num_rows > 0) {
 	header("Location: ../home.php");
-	#header("Flash: )";
+	$_SESSION['flash'] = "Username is currently in use";
 	exit();
 }
 
@@ -24,6 +25,7 @@ $userID;
 
 if ($link->query($sql) === true) {
 	$userID = (int) $link->insert_id;
+	$_SESSION['flash'] = "Account could not be created";
 	echo $userID;
 } else {
 	echo "Error encountered";

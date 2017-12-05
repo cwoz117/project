@@ -125,12 +125,12 @@
               require("global/db.php");
 
               $userID = $_SESSION["userID"];
-              $conID;
 	
-	      $sql = "select contractor_id from Driver where $userID = user_id;";
-              $conID = (int) $link->query($sql);
-
-              $sql = "select * from Truck where $conID = contractor_id;";
+	      $sql = "select contractor_id from Driver where user_id = '$userID';";
+              $result = $link->query($sql);
+	      $row = $result->fetch_assoc();
+	      $conID = $row['contractor_id'];
+              $sql = "select * from Truck where contractor_id = '$conID';";
 	      $result = $link->query($sql);
               $length = $result->num_rows;
               if ($length > 0) {

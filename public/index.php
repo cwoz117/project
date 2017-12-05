@@ -78,7 +78,7 @@
 <div id="forgotModal" class="w3-modal">
   <div class="w3-modal-content w3-card-4 w3-round-xlarge" style="max-width:350px">
     <header class="w3-container w3-blue" style="border-top-right-radius:8px;border-top-left-radius:8px;">
-      <h1> Why you such a fuck up? </h1>
+      <h1> Reset Password </h1>
     </header>
     <form id="resetPassword" class="form w3-container w3-padding" action="action/reset_userpass.php" method="post">
       <label>Username:</label>

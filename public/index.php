@@ -94,7 +94,7 @@
 </div>
 
 <div id="modal" class="w3-modal">
-  <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width:372px">
+  <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width:100%">
     <header class="w3-bar w3-blue w3-round-large">
       <button class="w3-bar-item w3-button w3-blue" onclick="openForm('register_driver')">Driver Registration</button>
       <button class="w3-bar-item w3-button w3-blue" onclick="openForm('register_company')">Company Registration</button>

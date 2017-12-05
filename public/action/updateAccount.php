@@ -72,6 +72,7 @@ if ($_POST["formname"] == "security") {
 
                 if ($link->multi_query($sql) === true) {
                     $_SESSION['flash'] = "Profiled updated.";
+                    $_SESSION['company_name'] = $name;
                 } else {
                     $_SESSION['flash'] = "Profile update failed.";
                 }
@@ -109,6 +110,7 @@ if ($_POST["formname"] == "security") {
                 }
                 if ($link->multi_query($sql) === true) {
                     $_SESSION['flash'] = "Profiled updated.";
+		    $_SESSION['driverName'] = $name;
                 } else {
                     $_SESSION['flash'] = "Profile update failed.";
                 }

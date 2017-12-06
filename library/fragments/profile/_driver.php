@@ -1,26 +1,26 @@
 <div id="id01" class="w3-modal">
-  <div class="w3-modal-content w3-animate-top">
+  <div class="w3-modal-content w3-animate-top w3-round-large">
     <div class="w3-container">
       <h2 id="header"></h2>
     </div>
     <form class="w3-container w3-card-4 w3-padding" action="action/manage_truck.php" method="post">
       <input type="text" class="w3-hide" id="instruction" name="command">
       <label class="w3-text-grey w3-padding-small" id="regLabel">Registration</label>
-      <input type="text" class="w3-input w3-border" id="regID" name="reg" pattern="[0-9]+">   
+      <input type="text" class="w3-input w3-border" id="regID" name="reg" pattern="[0-9].{3,10}" title="Must be between 3 to 10 characters" required>   
       <label class="w3-text-grey w3-padding-small">Provider</label>
-      <input type="text" class="w3-input w3-border" id="pvrID" name="provider" pattern=".{1,}">  
+      <input type="text" class="w3-input w3-border" id="pvrID" name="provider" pattern=".{1,30}" title="Must be between 3 to 30 characters" required>  
       <label class="w3-text-grey w3-padding-small">Policy Number</label>
-      <input type="text" class="w3-input w3-border" id="polnumID" name="polNum">  
+      <input type="text" class="w3-input w3-border" id="polnumID" name="polNum" pattern=".{1,10}" title="Must be between 1 to 10 characters" required>  
       <label class="w3-text-grey w3-padding-small">Plate Number</label>
-      <input type="text" class="w3-input w3-border" id="plateID" name="plate"> 
+      <input type="text" class="w3-input w3-border" id="plateID" name="plate" pattern="[A-Z0-9].{1,8}" title="Must be between 1 to 8 characters with only capital letters and numbers" required> 
       <label class="w3-text-grey w3-padding-small">Make</label>
-      <input type="text" class="w3-input w3-border" id="makeID" name="make">  
+      <input type="text" class="w3-input w3-border" id="makeID" name="make" pattern=".{1,15}" title="Must be between 1 to 15 characters" required>  
       <label class="w3-text-grey w3-padding-small">Model</label>
-      <input type="text" class="w3-input w3-border" id="modelID" name="model">  
+      <input type="text" class="w3-input w3-border" id="modelID" name="model" pattern=".{1,15}" title="Must be between 1 to 15 characters" required>  
       <label class="w3-text-grey w3-padding-small">Trailer Type</label>
-      <input type="text" class="w3-input w3-border" id="trailerID" name="trailer" maxlength=2> 
+      <input type="text" class="w3-input w3-border" id="trailerID" name="trailer" maxlength=2 required> 
       <label class="w3-text-grey w3-padding-small">Year</label>
-      <input type="text" class="w3-input w3-border" id="yearID" name="year" pattern="[0-9]{2}"> 
+      <input type="text" class="w3-input w3-border" id="yearID" name="year" pattern="[0-9]{2}" required> 
       <label class="w3-text-grey w3-padding-small">Province</label>
       <select required="required" class="w3-input w3-border" id="provID" name="prov"> 
          <option value="AB">Alberta</option>
@@ -38,7 +38,7 @@
          <option value="YT">Yukon</option>  
       </select> 
       <span>
-      <input class="w3-button w3-margin-top w3-blue w3-round w3-align-left" type="submit" value="Add">
+      <input class="w3-button w3-margin-top w3-blue w3-round w3-align-left" type="submit" value="Confirm">
       <a href="profile.php" class="w3-button w3-margin-top w3-red w3-round w3-align-right">Cancel</a>
       </span>
     </form>
@@ -46,7 +46,7 @@
 </div>
 
 <div id="delete" class="w3-modal">
-  <div class="w3-modal-content w3-animate-top" style="max-width:300px">
+  <div class="w3-modal-content w3-animate-top w3-round-large" style="max-width:300px">
     <div class="w3-container">
       <h2 style="text-align:center">Delete Truck</h2>
     </div>
@@ -186,18 +186,25 @@
               } else {
 		echo "You currently have not registered a truck.<br>";
               }      
-   
-
           ?>
-          <!--<li class="w3-border">Truck A <span style="float:right;">Active</span></li>
-          <li class="w3-border">Truck B</li> -->
           <li class="w3-border w3-center w3-light-grey" onclick="manageTruck(0)">
 
             <i class='fa fa-plus-square-o'></i>
           </li>
         </ul>
+        <p class="w3-red w3-center"> <?php echo $_SESSION['flash']; $_SESSION['flash'] = "" ?> </p>
       </div>
     </div>
   </div>
 </div>
-
+<script>
+  var deleteM = document.getElementById('delete');
+  var manageM = document.getElementById('id01');
+  window.onclick = function(event) {
+    if (event.target == manageM) {
+       manageM.style.display = "none";
+    } else if (event.target == deleteM) {
+       deleteM.style.display = "none";
+    }
+  }
+</script>

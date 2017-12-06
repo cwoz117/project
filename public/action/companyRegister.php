@@ -8,6 +8,7 @@ $addr = $_POST["address"];
 	
 require("global/db.php");
 	
+<
 $sql = "select username from User where username='$user';";
 $result = $link->query($sql);
 
@@ -27,6 +28,7 @@ if ($link->query($sql) === true)
 	$userID = (int) $link->insert_id;
 else
   $_SESSION['flash'] = "This company could not be entered into the database. Error: $link->error";
+
 
 
 $sql = "insert into Company (user_id, name, banking_info, address) values ($userID, '$compName', $bank, '$addr');";

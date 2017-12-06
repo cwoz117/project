@@ -15,24 +15,29 @@ function get_market_details(){
 function print_rows($result, $link){
   $i = 1;
   while ($row = $result->fetch_assoc()){
-    # button
-    echo "<button id='b$i' onclick=\"myFunction('$i')\"";
-    echo "class=\"w3-btn w3-block w3-left-align w3-round w3-border w3-white\">";
-    $name = $row['name'];
-    $start = $row['start_time'];
-    $end = $row['deadline'];
-    $price = $row['contract_price'];
-    echo "<span>$name $start $end <span class='w3-align-right'>$price</span></span></button>";
-
-    # hidden
-    echo "<div id='$i' class='w3-container w3-hide'>";
-    echo "<div class='w3-container w3-border w3-padding w3-white'>";
-    echo "<h2>$name</h3>";
-    echo "<p>A Description somehow</p>";
-    echo "</div></div>";
-
+    make_button($i, $row['name'], $row['start_time'], $row['deadline'], $row['contract_price']);
+    make_details($i);
     $i++;
   }
+}
+
+function make_button($i, $name, $start, $end, $price){
+    echo "<button id='b$i' onclick='myFunction($i);' ";
+    echo "class='w3-btn w3-block w3-left-align w3-round w3-border w3-white'>";
+    echo "<table class='w3-table w3-small'><tr>";
+    echo array_map("make_data_rows", func_get_args());
+    echo "</tr></table></button>";
+}
+
+function make_details($i){
+  echo "<div id='$i' class='w3-container w3-hide'>";
+  echo "  <div class='w3-container w3-border w3-padding w3-white'>";
+  echo "    <p>Pickup Address, Destination Address, asset_value, cargo type, gross weight, contact info</p>";
+  echo "    <button class='w3-btn'>Accept Contract</button></div></div>";
+}
+
+function make_data_rows($record){
+  return "<td>$record</td>";
 }
 
 get_market_details();

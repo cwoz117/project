@@ -9,7 +9,8 @@ if ($_POST["formname"] == "security") {
     $un = $_POST["un"];
     $pw1 = $_POST["pw"];
     $pw2 = $_POST["pw2"];
-    $sql="";
+
+    #=================================
     if($un<>""){
         #Checking if username is used
         $sql1 = "SELECT * FROM User WHERE username = '$un';";
@@ -18,32 +19,37 @@ if ($_POST["formname"] == "security") {
             $_SESSION['flash'] = "Username already in use";
 
         } else {
-            $_SESSION['flash'] = "set username: '$un' ";
-            $sql .= "UPDATE User SET username='$un' WHERE user_id='$user'";
+            $sql = "UPDATE User SET username='$un' WHERE user_id='$user'";
+            if($link->query($sql)== true){
+                $_SESSION['flash'] = "Username updated. ";
+            }else{
+                $_SESSION['flash'] = "Username failed to update. ";
+            }
         }
     }
 
     if($pw1 <> "" && $pw2 <> ""){
         if($pw2 <> $pw1){
-            $_SESSION['flash']="Password did not match. Please re-enter.";
+            $_SESSION['flash'].="Password did not match. Please re-enter.";
         }else{
             # check existing pw
             $sql2 = "SELECT * FROM User WHERE user_id='$user';";
             $result=$link->query($sql2);
             $row = $result->fetch_row();
             if($row[2]==$pw1){
-                $_SESSION['flash']="New password must be different from old password";
+                $_SESSION['flash'].="New password must be different from old password";
             }else{
-                $_SESSION['flash'] .=" AND set pw: '$pw1'";
-                $sql .= "UPDATE User SET password='$pw1' WHERE user_id='$user'";
+                $sql = "UPDATE User SET password='$pw1' WHERE user_id='$user'";
+                if($link->query($sql)== true){
+                    $_SESSION['flash'] .= "Password updated. ";
+                }else{
+                    $_SESSION['flash'] .= "Password failed to update. ";
+                }
             }
         }
     }
+    #==================================
 
-    if($link->multi_query($sql)==true){
-        $_SESSION['flash'] = "Update good";
-    }else{
-    }
 }else {
     switch ($accType) {
         # company
@@ -134,15 +140,15 @@ if ($_POST["formname"] == "security") {
                 $name = $_POST["name"];
                 $des = $_POST["description"];
 
-                $sql="";
+
                 if($name <> ""){
                     $sql = "UPDATE ContractEmployer SET name='$name' WHERE user_id='$user';";
                 }
                 if($des <> "")
                 {
-                    $sql .="UPDATE User SET profile_text='$des' WHERE user_id='$user';";
+
                 }
-                if($link->multi_query($sql) == true){
+                if($link->query($sql) === true){
                     $_SESSION['flash'] = "Profile updated.";
                 }else{
                     $_SESSION['flash'] = "Profile update failed.";

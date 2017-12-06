@@ -111,6 +111,7 @@
 
     <div class="w3-container w3-cell" style="width:40%;">
       <h2><?php echo $_SESSION["username"]?> </h2>
+        <div class="w3-container w3-cell" style="width:60%;">
         <p>
             <?php
             require("action/getProfileDescription.php");

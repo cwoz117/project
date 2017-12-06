@@ -61,7 +61,7 @@ $userID = $_SESSION['userID'];
 
 
         <label>Profile description</label>
-        <textarea name="description" placeholder="Enter profile description..."</textarea>
+        <textarea name="description" placeholder="Enter profile description..."></textarea>
 
         <!-- SQL Query to get driver license from database-->
         <?php

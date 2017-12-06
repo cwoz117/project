@@ -60,7 +60,7 @@ $userID = $_SESSION['userID'];
 
 
         <label>Profile description</label>
-        <textarea name="description" placeholder="Enter profile description..."</textarea>
+        <textarea name="description" placeholder="Enter profile description..."></textarea>
 
         <input class="w3-button w3-blue w3-round w3-margin-top" type = "submit" value="Submit">
     </form>

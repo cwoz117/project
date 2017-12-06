@@ -6,7 +6,6 @@
     $type = $_SESSION["type"];
     $id = $_SESSION['userID'];
 
-// Dont use case 1 for companies.
     switch($type) {
         case 1:     # company
             $sql = "select * from AcceptedOrders NATURAL JOIN Workorder where company_id = '$id' AND 
@@ -18,79 +17,33 @@
             else
                 echo "<p> There are no active orders available</p>";
             break;
-
-        case 2:     # Driver
-            $sql2 = "SELECT contractor_id FROM Driver WHERE user_id = '$id';";
-            $result2 = $link->query($sql2);
-            if ($result2==true){
-                $r = $result2->fetch_assoc();
-                $contractorID = $r["contractor_id"];
-            }else{
-                # ERROR
-                break;
-            }
-            $sql = "SELECT * FROM AcceptedOrders NATURAL JOIN Workorder WHERE contractor_id = $contractorID AND 
-                    Workorder.completed = 0 
-                    ORDER BY Workorder.deadline DESC;";
-
-            $result = $link->query($sql);
-            if ($result->num_rows>0) {
-                print_rows($result, $link);
-            }else{
-                echo "<p> There are no active orders available</p>";
-            }
-
-
-          break;
-
-        case 3:     # Employer
-            $sql2 = "SELECT contractor_id FROM ContractEmployer WHERE user_id = '$id';";
-            $result2 = $link->query($sql2);
-            if ($result2==true){
-                $r = $result2->fetch_assoc();
-                $contractorID = $r["contractor_id"];
-            }else{
-                # ERROR
-                break;
-            }
-            $sql = "SELECT * FROM AcceptedOrders NATURAL JOIN Workorder WHERE contractor_id = $contractorID AND 
-                    Workorder.completed = 0 
-                    ORDER BY Workorder.deadline DESC;";
-            $result = $link->query($sql);
-            if ($result->num_rows>0)
-                print_rows($result, $link);
-            else
-                echo "<p> There are no active orders available</p>";
-
-            break;
     }
     $link->close();  
   }
 
-function print_rows($result, $link){
+
+function print_rowsC($result, $link){
     $type = $_SESSION["type"];
     $i = 1;
     while ($row = $result->fetch_assoc()){
         # button
         echo "<div>";
+        # button for completing order
+        #echo "<form class=\"w3-container w3-padding\" action=\"action/complete_workorder.php\" method=\"post\">";
+        #echo "<input id='cB$i' class=\"w3-button w3-green w3-right-align w3-margin-top\" style=\"width=20%\" type = \"submit\" value=\"Complete\">";
+
+        # button for showing order details
+        echo "<button id='b$i' onclick=\"toggleView('$i')\"";
+        echo "class=\"w3-btn w3-block w3-left-align w3-round w3-border w3-white\" style=\"width=70%\">";
         $workorderNo = $row["workorder_no"];
         $payloadID = $row["payload_id"];
         $price = $row["contract_price"];
         $companyID = $row["company_id"];
-		
-		
-        # button for completing order
-        echo "<form class=\"w3-container w3-padding\" action=\"action/complete_workorder.php\" method=\"post\">";
+
         echo "<input type=\"hidden\" name=\"companyID\" value='$companyID'/>";
         echo "<input type=\"hidden\" name=\"payloadID\" value='$payloadID'/>";
         echo "<input type=\"hidden\" name=\"woNo\" value='$workorderNo'/>";
         echo "<input type=\"hidden\" name=\"button\" value='cB$i'/>";
-        echo "<input  id='cB$i' class=\"w3-button w3-green w3-right-align w3-margin-top\" style=\"width=20%\" type = \"submit\" value=\"Complete\"></form>";
-
-        # button for showing order details
-        echo "<button id='b$i' onclick=\"myFunction('$i')\"";
-        echo "class=\"w3-btn w3-block w3-left-align w3-round w3-border w3-white\" style=\"width=70%\">";
-
 
         # Find the name of contractor.
         $contractorName = $row["contractor_id"];
@@ -108,7 +61,6 @@ function print_rows($result, $link){
                 $contractorName = $r["name"];
             }
         }
-
         $companyName = $row["company_id"];
         $sql2 = "SELECT name FROM Company WHERE Company.user_id = '$companyName';";
         $result2=$link->query($sql2);
@@ -141,7 +93,6 @@ function print_rows($result, $link){
         $cargoType = $row["cargo_type"];
         $weight = $row["gross_weight"];
         $contactInfo = $row["contact_info"];
-
         # hidden
         echo "<div id='$i' class='w3-container w3-hide'>";
         echo "<div class='w3-container w3-border w3-padding w3-white'>";
@@ -162,13 +113,10 @@ function print_rows($result, $link){
                  Cargo Type: $cargoType<br>
                  Gross Weight: $weight<br>
                  For more information, please contact: $contactInfo</p>";
-        echo "</div></div></div>";
+        echo "</div></div></form></div>";
 
         $i++;
     }
 }
-
-
-
   get_active_order_details();
 ?>

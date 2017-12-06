@@ -108,21 +108,22 @@
 
 <div class="w3-container">
   <div class="w3-card w3-section w3-round-large">
+    <div class="w3-container w3-cell" style="width:60%;">
+      <h2 class="w3-bottombar w3-round"><?php echo "Welcome "; echo $_SESSION['driverName'] ?> </h2>
+      <p>
+        <?php 
+           $profile = $_SESSION["profile"];
+           if ($profile == "") {
+              echo "Tell everyone about yourself here!";
+           } else {
+              echo $profile;
 
-    <div class="w3-container w3-cell" style="width:40%;">
-      <h2><?php echo $_SESSION["username"]?> </h2>
-      <p>
-        I'v always preferred Cards cause they're rad. Maybe just some first/last name stuff, bio if we want
-        to consider it important. but tbh its more just to flush out the links in the nav bar
-      </p>
-      <p>
-        As an additional note, I think a truck form here would be legit, have a modal bound to the '+' 
-        button which will always be added once we make the list dynamic, then they can hit it
-        and get a screen drop down in front of them to add vehical info.
+           }
+         ?>
       </p>
     </div>
     <div class="w3-container w3-cell">      
-      <div class="w3-card w3-padding w3-section" style="min-height:200px;">
+      <div class="w3-card w3-padding w3-section" style="min-height:200px; width:550px;">
         <ul class="w3-ul w3-center">
           <h2 class="w3-center">Trucks</h2>
 	  <?php

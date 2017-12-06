@@ -54,9 +54,16 @@ session_start();
         $link->close();
         ?>
         <label for="un">Username</label>
-        <input type="text" id="un" name="un" placeholder=<?php echo $result["username"]?>>
+        <input type="text" id="un" name="un" placeholder=<?php echo $result['username']?>>
 
-
+        <?php
+        require("global/db.php");
+        $userID = $_SESSION['userID'];
+        $sql = "SELECT password FROM User WHERE user_id = '$userID';";
+        $result = $link->query($sql);
+        $result = $result->fetch_assoc();
+        $link->close();
+        ?>
         <label for="pw">New password</label>
         <input type="text" id = "pw" name="pw" placeholder="">
 

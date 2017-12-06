@@ -9,13 +9,13 @@ CREATE TABLE User(
   profile_text    varchar(255),
 	acc_type	INT 		NOT NULL, 		-- make this so it can only tkae on 4 values: 0, 1, 2, 3
 	
-	PRIMARY KEY (user_id)
+	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
 CREATE TABLE Contractor(
   contractor_id   INT UNSIGNED    AUTO_INCREMENT,
 
-  PRIMARY KEY (contractor_id)
+  CONSTRAINT PK_contractor PRIMARY KEY (contractor_id)
 );
 
 
@@ -26,8 +26,13 @@ CREATE TABLE ContractEmployer(
 	business_id	INT UNSIGNED	NOT NULL UNIQUE, 		-- make this so it can only tkae on 4 values: 0, 1, 2, 3
 	banking_info 	varchar(20)	NOT NULL UNIQUE, 
 	contractor_id	INT UNSIGNED	NOT NULL UNIQUE, 
-	
-	PRIMARY KEY (user_id), 
+
+	CONSTRAINT PK_employer PRIMARY KEY (user_id),
+
+	CONSTRAINT FK_userID FOREIGN KEY (user_id) REFERENCES User(user_id)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+
 	FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
@@ -41,11 +46,19 @@ CREATE TABLE Driver(
 	banking_info 	varchar(20)	NOT NULL UNIQUE, 
 	contractor_id	INT UNSIGNED	NOT NULL UNIQUE, 
 	
-	PRIMARY KEY (user_id), 
-	FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
+	CONSTRAINT PK_driver PRIMARY KEY (user_id),
+
+	CONSTRAINT FK_userID
+		FOREIGN KEY (user_id) REFERENCES User(user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+
+	CONSTRAINT FK_contractor
+		FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );
+
 
 CREATE TABLE Company(
 	user_id		INT UNSIGNED	NOT NULL UNIQUE, 
@@ -53,7 +66,7 @@ CREATE TABLE Company(
 	banking_info 	varchar(20)	NOT NULL UNIQUE, 
 	address		varchar(255)	NOT NULL, 
 	
-	PRIMARY KEY (user_id)
+	CONSTRAINT PK_company PRIMARY KEY (user_id)
 );
 
 CREATE TABLE Truck(
@@ -68,8 +81,9 @@ CREATE TABLE Truck(
 	province		CHAR(2)		NOT NULL,
 	trailer_type		CHAR(2),					-- DEFINE THE TRAILER TYPE, MIGHT BE NONE (MAKE A DOMAIN TO COVER THE TYPE
 
-	PRIMARY KEY (registration),
-	FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
+	CONSTRAINT PK_truck PRIMARY KEY (registration),
+
+	CONSTRAINT FK_truckContractorID FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE						-- ON the deletion of a banking account, do we delete all trucks? only occurs when a business delets itself mind you
 );
@@ -82,10 +96,10 @@ CREATE TABLE Payload(
 	asset_value		DOUBLE,						-- Maybe Null because it could be an empty container
 	cargo_type		CHAR(2)		NOT NULL,			-- DEFINE A DOMAIN FOR THIS AT SOME POINT
 	gross_weight		INT UNSIGNED 	NOT NULL,
-	contact_info		varchar(255)	NOT NULL, 
+	contact_info		varchar(255)	NOT NULL,
 
-	PRIMARY KEY (payload_id), 
-	FOREIGN KEY (company_id) REFERENCES Company(user_id)
+	CONSTRAINT PK_payload PRIMARY KEY (payload_id),
+	CONSTRAINT FK_companyID FOREIGN KEY (company_id) REFERENCES Company(user_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );
@@ -99,13 +113,13 @@ CREATE TABLE Workorder(
 	start_time		DATE		NOT NULL,
 	deadline		DATE		NOT NULL,
 	completed		BOOLEAN		NOT NULL,
-	contract_price		DOUBLE		NOT NULL, 
-	
-	PRIMARY KEY (company_id, payload_id, workorder_no), 
-	FOREIGN KEY (company_id) REFERENCES Company(user_id)
+	contract_price		DOUBLE		NOT NULL,
+
+	CONSTRAINT PK_workorder PRIMARY KEY (company_id, payload_id, workorder_no),
+	CONSTRAINT FK_companyID FOREIGN KEY (company_id) REFERENCES Company(user_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE,
-	FOREIGN KEY (payload_id) REFERENCES Payload(payload_id)
+	CONSTRAINT FK_payloadID FOREIGN KEY (payload_id) REFERENCES Payload(payload_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );
@@ -118,8 +132,8 @@ CREATE TABLE PolicyRequirements(
 	start_time		DATE		NOT NULL,
 	deadline		DATE		NOT NULL,
 
-	PRIMARY KEY (payload_id, policy_no),
-	FOREIGN KEY (payload_id) REFERENCES Payload(payload_id)
+	CONSTRAINT PK_policy PRIMARY KEY (payload_id, policy_no),
+	CONSTRAINT PK_payloadID FOREIGN KEY (payload_id) REFERENCES Payload(payload_id)
 		ON UPDATE CASCADE						-- Probably should restrict this idk yet though.
 		ON DELETE CASCADE
 );
@@ -129,13 +143,13 @@ CREATE TABLE AcceptedOrders(
 	company_id		INT UNSIGNED 	NOT NULL,
 	payload_id		INT UNSIGNED	NOT NULL, 
 	workorder_no		INT UNSIGNED	NOT NULL, 
-	contractor_id		INT UNSIGNED	NOT NULL, 
-	
-	PRIMARY KEY (company_id, payload_id, workorder_no, contractor_id),
-	FOREIGN KEY (company_id, payload_id, workorder_no) REFERENCES Workorder(company_id, payload_id, workorder_no)
+	contractor_id		INT UNSIGNED	NOT NULL,
+
+	CONSTRAINT PK_acceptedOrders PRIMARY KEY (company_id, payload_id, workorder_no, contractor_id),
+	CONSTRAINT FK_orders FOREIGN KEY (company_id, payload_id, workorder_no) REFERENCES Workorder(company_id, payload_id, workorder_no)
 		ON UPDATE RESTRICT
 		ON DELETE RESTRICT,
-	FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
+	CONSTRAINT FK_contractorID FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
 		ON UPDATE RESTRICT
 		ON DELETE RESTRICT
 );
@@ -148,8 +162,8 @@ CREATE TABLE Location(
 	address			varchar(255)	NOT NULL, 
 	contact_number		CHAR(10)	NOT NULL,
 
-	PRIMARY KEY (location_id),
-	FOREIGN KEY (company_id) REFERENCES Company(user_id)
+	CONSTRAINT PK_locationID PRIMARY KEY (location_id),
+	CONSTRAINT FK_companyID FOREIGN KEY (company_id) REFERENCES Company(user_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );

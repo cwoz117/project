@@ -15,16 +15,23 @@
     $_SESSION['userID'] = $row['user_id'];
     $_SESSION['username'] = $row['username'];
     $_SESSION['type'] = $row['acc_type'];
-     
-    if ($_SESSION['type'] === 1) {
+    $_SESSION['profile'] = $row['profile_text']; 
+    $id = $row['user_id'];
+    
+    if ($_SESSION['type'] == 1) {
       $_SESSION['testo'] = "hello world";
-      $id = $row['user_id'];
       $corporate_sql = "SELECT * from Company where user_id = '$id';";
       $corporate = $link->query($corporate_sql)->fetch_assoc();
       $_SESSION['company_name'] = $corporate['name'];
 
-    }
 
+    } else if ($_SESSION['type'] == 2) {
+ 
+      $sql = "select * from Driver where user_id = '$id';";
+      $driver = $link->query($sql)->fetch_assoc();
+      $_SESSION['driverName'] = $driver['name'];
+
+    }
 
     $redirect = "../home.php";
   } else {

@@ -26,8 +26,13 @@ CREATE TABLE ContractEmployer(
 	business_id	INT UNSIGNED	NOT NULL UNIQUE, 		-- make this so it can only tkae on 4 values: 0, 1, 2, 3
 	banking_info 	varchar(20)	NOT NULL UNIQUE, 
 	contractor_id	INT UNSIGNED	NOT NULL UNIQUE, 
-	
-	PRIMARY KEY (user_id), 
+
+	PRIMARY KEY (user_id),
+
+	FOREIGN KEY (user_id) REFERENCES User(user_id)
+		ON UPDATE CASCADE
+		ON DELETE CASCADE,
+
 	FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE

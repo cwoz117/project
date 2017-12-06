@@ -53,7 +53,6 @@ $userID = $_SESSION['userID'];
         $result = $link->query($sql);
         $row = $result->fetch_assoc();
         $link->close();
-        echo $row["name"];
         ?>
         <label for="name">Full name</label>
         <input type="text" id="name" name="fullname" placeholder=<?php echo $row["name"]?>>

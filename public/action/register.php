@@ -9,7 +9,7 @@
   require("global/db.php");  
 
   #Checking if username is used
-  $sql = "select $username from User;";
+  $sql = "SELECT * FROM User WHERE username = '$user';";
   $result = $link->query($sql);
   
     if ($result->num_rows > 0) {

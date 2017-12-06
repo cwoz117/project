@@ -57,9 +57,11 @@
     <div class="w3-container w3-margin w3-right w3-card w3-round-large" style="min-height:inherit;">
       <h3 class="w3-center">Quick Links</h3><hr>
       <ul class="w3-right-align" style="list-style: none;">
+          <!--
         <li><a href='#' onclick="document.getElementById('addPayload').style.display = 'block'" >Add a Payload</a></li>
         <li><a href='#'>Create a Workorder</a></li>
-        <li><a href='#'>View Completed jobs</a></li>
+        -->
+        <li><a href='#' onclick="document.getElementById('viewCompletedJobs').style.display='block'">View Completed jobs</a></li>
       </ul>
     </div>
   </div>
@@ -69,7 +71,23 @@
 </div>
 
 
-<!-- Payload Adding Modal -->
+<!-- Recently completed jobs model -->
+<div class="w3-modal" id="viewCompletedJobs">
+    <div class="w3-modal-content w3-animate-top w3-round-large">
+        <div class="w3-container">
+            <h2>Recently Completed Jobs</h2>
+        </div>
+        <p>
+            Display some basic info on completed jobs
+        </p>
+        <?php
+        require ('action/getCompletedJobs');
+        ?>
+    </div>
+</div>
+
+
+<!-- Payload Adding Modal
 <div class="w3-modal" id="addPayload">
   <div class="w3-modal-content w3-animate-top w3-round-large">
     <div class="w3-container">
@@ -91,7 +109,7 @@
     </form>
   </div>
 </div>
-
+-->
 
 <!-- Workorder Adding Modal
 <div class="w3-modal" id="addWO">

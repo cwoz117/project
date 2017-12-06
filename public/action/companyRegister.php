@@ -8,12 +8,14 @@ $addr = $_POST["address"];
 	
 require("global/db.php");
 	
-$sql = "select username from User;";
+<
+$sql = "select username from User where username='$user';";
 $result = $link->query($sql);
 
 if ($result->num_rows > 0) {
-	header("Location: ../home.php");
-	$_SESSION['flash'] = "Username is currently in use";
+  $_SESSION['flash'] = "That Username is already in use";
+  header("Location: ../index.php");
+  $link->close();
 	exit();
 }
 
@@ -22,24 +24,17 @@ $sql = "insert into User (username, password, acc_type) values ('$user', '$pass'
 
 #Retrieving the ID of last insert
 $userID;
-
-if ($link->query($sql) === true) {
+if ($link->query($sql) === true)
 	$userID = (int) $link->insert_id;
-	$_SESSION['flash'] = "Account could not be created";
-	echo $userID;
-} else {
-	echo "Error encountered";
-}
+else
+  $_SESSION['flash'] = "This company could not be entered into the database. Error: $link->error";
+
 
 
 $sql = "insert into Company (user_id, name, banking_info, address) values ($userID, '$compName', $bank, '$addr');";
 
-#Need error check here?
 $link->query($sql);
-
 $link->close();
 
-#Correct redirect --> Need message?
-header("Location: ../home.php");
-
+header("Location: ../index.php");
 ?>

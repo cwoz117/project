@@ -20,6 +20,8 @@
         border-radius: 4px;
         box-sizing: border-box;
         resize: none;
+        rows="4";
+        cols="50";
     }
 
     #inputForm {
@@ -63,10 +65,11 @@ $userID = $_SESSION['userID'];
         $sql = "SELECT * FROM User WHERE user_id = '$userID';";
         $result = $link->query($sql);
         $row = $result->fetch_assoc();
+        $text = $row["profile_text"];
         $link->close();
         ?>
         <label>Profile description</label>
-        <textarea name="description" placeholder=<?php echo $row["profile_text"] ?>></textarea>
+        <textarea name="description" placeholder=<p><?php echo $text ?></p></textarea>
 
         <!-- SQL Query to get driver license from database-->
         <?php

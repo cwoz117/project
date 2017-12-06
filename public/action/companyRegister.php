@@ -7,7 +7,7 @@ $bank = $_POST["bankinfo"];
 $addr = $_POST["address"];
 	
 require("global/db.php");
-	
+
 $sql = "select username from User where username='$user';";
 $result = $link->query($sql);
 

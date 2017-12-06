@@ -9,12 +9,12 @@ insert into Company VALUES(1, "The Empire", 1234, "1 Coruscant Dr."),
                           (2, "The Resistance", 4321, "2 Dantooine Way."),
                           (3, "Cloud City", 5678, "In the Air over Bespin");
                           
-insert into Payload VALUES(1, 1, b'101', 15700.47, '01', 1000, "Your nearest Imperial outpost order #72207"),
-                          (2, 1, b'101', 22600.77, '10', 3570, "Your nearest Imperial outpost order #49852"),
-                          (3, 2, b'101', 8070.47, '11', 1200, "Contact the Imperial Rebels on Dantooine"),
-                          (4, 2, b'101', 60.77, '00', 10, "Help me obiwan kenobi, you're our only hope"),
-                          (5, 3, b'101', 62700.47, '01', 4000, "Cloud City mining supplies"),
-                          (6, 3, b'101', 77700.77, '10', 3570, "Guns just in case the toaster comes back");
+insert into Payload VALUES(1, 1, 'b101', 15700.47, '01', 1000, "Your nearest Imperial outpost order #72207"),
+                          (2, 1, 'b101', 22600.77, '10', 3570, "Your nearest Imperial outpost order #49852"),
+                          (3, 2, 'b101', 8070.47, '11', 1200, "Contact the Imperial Rebels on Dantooine"),
+                          (4, 2, 'b101', 60.77, '00', 10, "Help me obiwan kenobi, you're our only hope"),
+                          (5, 3, 'b101', 62700.47, '01', 4000, "Cloud City mining supplies"),
+                          (6, 3, 'b101', 77700.77, '10', 3570, "Guns just in case the toaster comes back");
 
 insert into PolicyRequirements VALUES(1, 300, 'NA', false, '2017-12-04', '2018-01-05'),
                                      (3, 600, 'AB', true, '2017-12-03', '2018-02-04'),
@@ -36,6 +36,9 @@ insert into Contractor VALUES(1),(2);
 insert into Driver VALUES(4, "Boba Fett", 12121212, 1111111111, 1357924, 1),
                          (5, "Han Solo", 34343434, 2222222222, 2468102, 2);
 
-insert into Truck VALUES(1234567890, 1, "Mandalore", "9999", "B0UNTY", "Firespray", "31", "1999-01-01", "AB", "01"),
-                        (0987654321, 2, "Corellian", "4444", "SMU66L3R", "YT-1300F", "492727ZED", "2000-01-01", "AB", "10");
+insert into Truck VALUES(1234567890, 1, "Mandalore", "9999", "B0UNTY", "Firespray", "31", "99", "AB", "01"),
+                        (0987654321, 2, "Corellian", "4444", "SMU66L3R", "YT-1300F", "492727ZED", "00", "AB", "10");
 
+insert into Location VALUES(1, 1, "Death Star", "3992"),
+                           (2, 2, "Hoth", "200392"),
+                           (3, 3, "Bespin", "902830");

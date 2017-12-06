@@ -29,12 +29,12 @@ CREATE TABLE ContractEmployer(
 
 	CONSTRAINT PK_employer PRIMARY KEY (user_id),
 
-	CONSTRAINT FK_userID FOREIGN KEY (user_id) REFERENCES User(user_id)
+	CONSTRAINT FK_EmpUserID FOREIGN KEY (user_id) REFERENCES User(user_id)
 
 		ON UPDATE CASCADE
 		ON DELETE CASCADE,
 
-	CONSTRAINT FK_contractorID FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
+	CONSTRAINT FK_EmpContractorID FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );
@@ -49,12 +49,12 @@ CREATE TABLE Driver(
 	
 	CONSTRAINT PK_driver PRIMARY KEY (user_id),
 
-	CONSTRAINT FK_userID
+	CONSTRAINT FK_DriverUserID
 		FOREIGN KEY (user_id) REFERENCES User(user_id)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
 
-	CONSTRAINT FK_contractor
+	CONSTRAINT FK_DriverContractorID
 		FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
@@ -100,7 +100,7 @@ CREATE TABLE Payload(
 	contact_info		varchar(255)	NOT NULL,
 
 	CONSTRAINT PK_payload PRIMARY KEY (payload_id),
-	CONSTRAINT FK_companyID FOREIGN KEY (company_id) REFERENCES Company(user_id)
+	CONSTRAINT FK_payloadCompanyID FOREIGN KEY (company_id) REFERENCES Company(user_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );
@@ -117,10 +117,10 @@ CREATE TABLE Workorder(
 	contract_price		DOUBLE		NOT NULL,
 
 	CONSTRAINT PK_workorder PRIMARY KEY (company_id, payload_id, workorder_no),
-	CONSTRAINT FK_companyID FOREIGN KEY (company_id) REFERENCES Company(user_id)
+	CONSTRAINT FK_workorderCompanyID FOREIGN KEY (company_id) REFERENCES Company(user_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE,
-	CONSTRAINT FK_payloadID FOREIGN KEY (payload_id) REFERENCES Payload(payload_id)
+	CONSTRAINT FK_workorderPayloadID FOREIGN KEY (payload_id) REFERENCES Payload(payload_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );
@@ -134,7 +134,7 @@ CREATE TABLE PolicyRequirements(
 	deadline		DATE		NOT NULL,
 
 	CONSTRAINT PK_policy PRIMARY KEY (payload_id, policy_no),
-	CONSTRAINT PK_payloadID FOREIGN KEY (payload_id) REFERENCES Payload(payload_id)
+	CONSTRAINT PK_policyPayloadID FOREIGN KEY (payload_id) REFERENCES Payload(payload_id)
 		ON UPDATE CASCADE						-- Probably should restrict this idk yet though.
 		ON DELETE CASCADE
 );
@@ -147,10 +147,10 @@ CREATE TABLE AcceptedOrders(
 	contractor_id		INT UNSIGNED	NOT NULL,
 
 	CONSTRAINT PK_acceptedOrders PRIMARY KEY (company_id, payload_id, workorder_no, contractor_id),
-	CONSTRAINT FK_orders FOREIGN KEY (company_id, payload_id, workorder_no) REFERENCES Workorder(company_id, payload_id, workorder_no)
+	CONSTRAINT FK_acptOrders FOREIGN KEY (company_id, payload_id, workorder_no) REFERENCES Workorder(company_id, payload_id, workorder_no)
 		ON UPDATE RESTRICT
 		ON DELETE RESTRICT,
-	CONSTRAINT FK_contractorID FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
+	CONSTRAINT FK_acptContractorID FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
 		ON UPDATE RESTRICT
 		ON DELETE RESTRICT
 );
@@ -164,7 +164,7 @@ CREATE TABLE Location(
 	contact_number		CHAR(10)	NOT NULL,
 
 	CONSTRAINT PK_locationID PRIMARY KEY (location_id),
-	CONSTRAINT FK_companyID FOREIGN KEY (company_id) REFERENCES Company(user_id)
+	CONSTRAINT FK_locCompanyID FOREIGN KEY (company_id) REFERENCES Company(user_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );

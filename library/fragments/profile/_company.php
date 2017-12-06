@@ -5,7 +5,13 @@
       <div class="w3-container w3-cell" style="width:40%;">
           <h2><?php echo $_SESSION['company_name']; ?></h2>
           <h3>COMPANY INFORMATION</h3>
-          <p> There should be some kind of thing here to fill this out, maybe editable information </p>
+          <p>
+          <p>
+              <?php
+              require("action/getProfileDescription.php");
+              ?>
+          </p>
+          </p>
       </div>
       
       <div class="w3-container w3-cell">

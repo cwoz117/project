@@ -111,15 +111,11 @@
     <div class="w3-container w3-cell" style="width:60%;">
       <h2 class="w3-bottombar w3-round"><?php echo "Welcome "; echo $_SESSION['driverName'] ?> </h2>
       <p>
-        <?php 
-           $profile = $_SESSION["profile"];
-           if ($profile == "") {
-              echo "Tell everyone about yourself here!";
-           } else {
-              echo $profile;
-
-           }
-         ?>
+        <p>
+            <?php
+            require("action/getProfileDescription.php");
+            ?>
+        </p>
       </p>
     </div>
     <div class="w3-container w3-cell">      

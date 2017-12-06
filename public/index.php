@@ -64,7 +64,12 @@
         <input class="w3-input w3-round" type="text" name="username">
         <label>Password:</label> 
         <input class="w3-input w3-round" type="password" name="password">
-        <p class="w3-red"><?php echo $_SESSION['flash']; $_SESSION['flash'] = ""; ?></p>
+        <p class="w3-red"><?php 
+  $level = $_SESSION['flash_color'];
+  echo $_SESSION['flash']; 
+  $_SESSION['flash'] = ""; 
+  $_SESSION['flash_color'] = "w3-white";
+?></p>
         
         <div><input class="w3-button w3-blue w3-round w3-margin-top" type="submit" value="Login"></div>
         <a href="#" onclick="document.getElementById('forgotModal').style.display='block'">Forgot Password?</a>

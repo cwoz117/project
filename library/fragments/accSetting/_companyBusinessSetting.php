@@ -53,10 +53,9 @@ $userID = $_SESSION['userID'];
         $result = $link->query($sql);
         $row = $result->fetch_assoc();
         $link->close();
-        echo $row["name"];
         ?>
         <label for="bank">Full name</label>
-        <input type="text" id="bank" name="banking" pattern=".{4,}" title="Bank info must be longer that 4 characters" placeholder=<?php echo $row["banking_info"]?>>
+        <input type="text" id="bank" name="banking" pattern=".{4,}" title="Bank info must be longer that 4 characters" value='<?php echo $row["banking_info"]?>'>
 
         <input class="w3-button w3-blue w3-round w3-margin-top" type = "submit" value="Submit">
     </form>

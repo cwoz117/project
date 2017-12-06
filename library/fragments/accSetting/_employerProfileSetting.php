@@ -58,6 +58,10 @@ $userID = $_SESSION['userID'];
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder=<?php echo $row["name"]?>>
 
+
+        <label>Profile description</label>
+        <textarea name="description" placeholder="Enter profile description..."</textarea>
+
         <input class="w3-button w3-blue w3-round w3-margin-top" type = "submit" value="Submit">
     </form>
 </div>

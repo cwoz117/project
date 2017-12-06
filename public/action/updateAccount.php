@@ -85,7 +85,7 @@ if ($_POST["formname"] == "security") {
                 $_SESSION['flash'] = "Invalid form submitted to updateAccount.";
             }
             break;
-        case 2:
+        case 2:     #driver
             if ($_POST["formname"] == "profile") {
                 $name = $_POST["fullname"];
                 $des = $_POST["description"];
@@ -132,14 +132,20 @@ if ($_POST["formname"] == "security") {
         case 3:     # employer
             if ($_POST["formname"] == "profile") {
                 $name = $_POST["name"];
+                $des = $_POST["description"];
 
+                $sql="";
                 if($name <> ""){
                     $sql = "UPDATE ContractEmployer SET name='$name' WHERE user_id='$user';";
-                    if($link->query($sql) === true){
-                        $_SESSION['flash'] = "Profile updated.";
-                    }else{
-                        $_SESSION['flash'] = "Profile update failed.";
-                    }
+                }
+                if($des <> "")
+                {
+                    $sql .="UPDATE User SET profile_text='$des' WHERE user_id='$user';";
+                }
+                if($link->multi_query($sql) == true){
+                    $_SESSION['flash'] = "Profile updated.";
+                }else{
+                    $_SESSION['flash'] = "Profile update failed.";
                 }
             } elseif ($_POST["formname"] == "business") {
                 $busID = $_POST["busID"];

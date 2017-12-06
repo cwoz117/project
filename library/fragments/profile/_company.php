@@ -6,11 +6,9 @@
           <h2><?php echo $_SESSION['company_name']; ?></h2>
           <h3>COMPANY INFORMATION</h3>
           <p>
-          <p>
               <?php
               require("action/getProfileDescription.php");
               ?>
-          </p>
           </p>
       </div>
       

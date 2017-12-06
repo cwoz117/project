@@ -20,6 +20,11 @@
         border-radius: 4px;
         box-sizing: border-box;
         resize: none;
+<<<<<<< HEAD
+=======
+        rows="4";
+        cols="50";
+>>>>>>> 01165a85c4798dc21256812490d29d26ddc59458
     }
 
     #inputForm {
@@ -57,16 +62,8 @@ $userID = $_SESSION['userID'];
         <label for="name">Full name</label>
         <input type="text" id="name" name="fullname" placeholder=<?php echo $row["name"]?>>
 
-        <!-- SQL Query to get profile description from database-->
-        <?php
-        require("global/db.php");
-        $sql = "SELECT * FROM User WHERE user_id = '$userID';";
-        $result = $link->query($sql);
-        $row = $result->fetch_assoc();
-        $link->close();
-        ?>
         <label>Profile description</label>
-        <textarea name="description" placeholder=<?php echo $row["profile_text"] ?>></textarea>
+        <textarea name="description" placeholder="Enter profile description..."></textarea>
 
         <!-- SQL Query to get driver license from database-->
         <?php

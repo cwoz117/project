@@ -58,16 +58,9 @@ $userID = $_SESSION['userID'];
         <label for="name">Company Name</label>
         <input type="text" id="name" name="companyName" placeholder=<?php echo $row["name"]?>>
 
-        <!-- SQL Query to get profile description from database-->
-        <?php
-        require("global/db.php");
-        $sql = "SELECT * FROM User WHERE user_id = '$userID';";
-        $result = $link->query($sql);
-        $row = $result->fetch_assoc();
-        $link->close();
-        ?>
+
         <label>Company description</label>
-        <textarea name="description" placeholder=<?php echo $row["profile_text"] ?>></textarea>
+        <textarea name="description" placeholder="Enter profile description..."></textarea>
 
         <!-- SQL Query to get driver license from database-->
         <?php

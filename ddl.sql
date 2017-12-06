@@ -30,10 +30,11 @@ CREATE TABLE ContractEmployer(
 	CONSTRAINT PK_employer PRIMARY KEY (user_id),
 
 	CONSTRAINT FK_userID FOREIGN KEY (user_id) REFERENCES User(user_id)
+
 		ON UPDATE CASCADE
 		ON DELETE CASCADE,
 
-	FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
+	CONSTRAINT FK_contractorID FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)
 		ON UPDATE CASCADE
 		ON DELETE CASCADE
 );

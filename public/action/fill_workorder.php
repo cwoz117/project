@@ -59,7 +59,7 @@ function print_rows($result, $link){
         }
 
         # button
-        echo "<tr id='b$i' onclick=\"myFunction('$i')\">";
+        echo "<tr id='w$i' onclick=\"assignWoID('$i')\">";
         #echo "class=\"w3-btn w3-block w3-left-align w3-round w3-border w3-white\">";
         #echo "<span>$workorderNo $payloadID $companyName <span class='w3-align-right'>$contractPrice</span></span></button>";
         echo "<td>$workorderNo</td>
@@ -69,12 +69,12 @@ function print_rows($result, $link){
 
 
         # hidden
-        echo "<div id='$i' class='w3-container w3-display-container w3-hide'>";
+        echo "<div id=wo'$i' class='w3-container w3-hide'>";
         echo "<div class='w3-container w3-border w3-padding w3-white'>";
-        echo "<h4>Order details</h4>";
-        echo "<p>Pickup Address: $pickupAddress</p>";
-        echo "<p>Dropoff Address: $dropoffAddress</p>";
-        echo "<p>Deadline: $deadline</p>";
+        echo "<h3>Order details</h3>";
+        echo "<p>Pickup Address: $pickupAddress<br>
+                 Dropoff Address: $dropoffAddress<br>
+                 Deadline: $deadline</p>";
         echo "</div></div>";
 
 

@@ -13,14 +13,14 @@
   }
 
   function getActiveOrders(){
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        document.getElementById('active_orders').innerHTML = this.responseText;
-      }
-    };
-    xmlhttp.open("GET", "action/fill_active_orders.php", true);
-    xmlhttp.send();
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              document.getElementById('active_orders_tub').innerHTML = this.responseText;
+          }
+      };
+      xmlhttp.open("GET", "action/fill_active_orders.php", true);
+      xmlhttp.send();
   }
 
   function getPayloads(id) {
@@ -32,11 +32,16 @@
   <div class="w3-card w3-section w3-round-large">
     <div class="w3-container" style="min-height:400px;"> 
       <h2>Home</h2>
-    <div class="w3-container w3-twothird" style="min-height:inherit;">
-    <div id="active_orders" class="w3-container w3-padding w3-margin w3-card w3-round-large" style="min-height:inherit;">
-      <script type="text/javascript">getActiveOrders();</script>
-    </div>
-  </div>
+        <div class="w3-container w3-twothird" style="min-height:inherit;">
+            <div id="active_orders" class="w3-container w3-padding w3-margin w3-card w3-round-large" style="min-height:inherit;">
+                <h3 class="w3-center">Orders in Progress</h3><hr>
+                <div id="active_orders_tub" class="w3-container w3-margin" style="min-height:400px;">
+                    <script type="text/javascript">
+                        getActiveOrders();
+                    </script>
+                </div>
+            </div>
+        </div>
 
   <div class="w3-container w3-third" style="min-height:inherit;">
     <div class="w3-container w3-margin w3-right w3-card w3-round-large" style="min-height:inherit;">

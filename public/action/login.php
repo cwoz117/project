@@ -30,6 +30,7 @@
       $sql = "select * from Driver where user_id = '$id';";
       $driver = $link->query($sql)->fetch_assoc();
       $_SESSION['driverName'] = $driver['name'];
+      $_SESSION['contractor_id'] = $driver['contractor_id'];
 
     }
 

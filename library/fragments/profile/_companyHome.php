@@ -23,6 +23,18 @@
       xmlhttp.send();
   }
 
+  function myFunction(id) {
+      var y = document.getElementById("b" + id);
+      var x = document.getElementById(id);
+      if (x.className.indexOf("w3-show") == -1) {
+          y.className += " w3-card-4";
+          x.className += " w3-show";
+      } else {
+          y.className = y.className.replace(" w3-card-4", "");
+          x.className = x.className.replace(" w3-show", "");
+      }
+  }
+
   function getPayloads(id) {
    
   }

@@ -15,7 +15,11 @@
     $_SESSION['userID'] = $row['user_id'];
     $_SESSION['username'] = $row['username'];
     $_SESSION['type'] = $row['acc_type'];
-     
+
+    if ($_SESSION['type'] == 2){
+      $_SESSION['contractor_id'] = $row['contractor_id'];
+    }
+
     if ($_SESSION['type'] === 1) {
       $_SESSION['testo'] = "hello world";
       $id = $row['user_id'];

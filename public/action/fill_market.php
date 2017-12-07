@@ -23,7 +23,7 @@ function print_rows($result, $link){
   $i = 1;
   while ($row = $result->fetch_assoc()){
     make_button($i, $row['name'], $row['start_time'], $row['deadline'], $row['contract_price']);
-    make_details($i, $row['pickup_address'],$row['dropoff_address'],$row['asset_value'],$row['cargo_type'],$row['gross_weight'],$row['contact_info']);
+    make_details($i, $row['pickup_address'],$row['dropoff_address'],$row['asset_value'],$row['cargo_type'],$row['gross_weight'],$row['contact_info'], $row['workorder_no']);
     $i++;
   }
 }
@@ -37,11 +37,11 @@ function make_button($i, $name, $start, $end, $price){
     echo "</tr></table></button>";
 }
 
-function make_details($i, $pickup, $destination, $asset, $cargo, $weight, $contact){
+function make_details($i, $pickup, $destination, $asset, $cargo, $weight, $contact, $workorder_no){
   echo "<div id='$i' class='w3-container w3-hide'>";
   echo "  <div class='w3-container w3-border w3-padding w3-white'>";
   echo "    <p>$pickup, $destination, $asset, $cargo, $weight</p><p>$contact</p>";
-  echo "    <button class='w3-btn w3-round w3-blue'>Accept Contract</button></div></div>";
+  echo "    <button onclick=\"acceptContract($workorder_no);\" class='w3-btn w3-round w3-blue'>Accept Contract</button></div></div>";
 }
 
 function make_data_rows($record){

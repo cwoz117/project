@@ -15,7 +15,19 @@
       }
     }
 
-    function getMarketOrders(){
+    function acceptContract(id){
+      var xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("market_tub").innerHTML = this.responseText;
+        }
+      };
+      
+      xmlhttp.open("POST", "action/accept_contract.php", true);
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      xmlhttp.send("workorder_no=" + id);
+    }
+    function fillMarket(){
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -25,6 +37,7 @@
       xmlhttp.open("GET", "action/fill_market.php", true);
       xmlhttp.send();
     }
+
   </script>
   
   <div class="w3-container">
@@ -33,7 +46,7 @@
         <h2>Market</h2>
         <div id="market_tub" class="w3-container w3-margin" style="min-height:400px;">
           <script type="text/javascript">
-             getMarketOrders();
+            fillMarket();
           </script>
         </div>
       </div>

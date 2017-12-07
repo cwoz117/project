@@ -126,13 +126,11 @@ CREATE TABLE PolicyRequirements(
 
 
 CREATE TABLE AcceptedOrders(
-	company_id		INT UNSIGNED 	NOT NULL,
-	payload_id		INT UNSIGNED	NOT NULL, 
 	workorder_no		INT UNSIGNED	NOT NULL, 
 	contractor_id		INT UNSIGNED	NOT NULL, 
 	
-	PRIMARY KEY (company_id, payload_id, workorder_no, contractor_id),
-	FOREIGN KEY (company_id, payload_id, workorder_no) REFERENCES Workorder(company_id, payload_id, workorder_no)
+	PRIMARY KEY (workorder_no, contractor_id),
+	FOREIGN KEY (workorder_no) REFERENCES Workorder(workorder_no)
 		ON UPDATE RESTRICT
 		ON DELETE RESTRICT,
 	FOREIGN KEY (contractor_id) REFERENCES Contractor(contractor_id)

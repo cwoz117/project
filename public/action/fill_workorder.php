@@ -21,7 +21,7 @@ function get_workorder_details()
         $contractorID = $row["contractor_id"];
 
         $max=10;
-        $sql = "SELECT * FROM AcceptedOrders JOIN Workorder 
+        $sql = "SELECT * FROM AcceptedOrders NATURAL JOIN Workorder 
                 WHERE AcceptedOrders.contractor_id = '$contractorID' AND 
                 Workorder.completed=1 
                 ORDER BY deadline DESC;";

@@ -17,6 +17,7 @@ function get_market_details(){
   else
     echo "<p>There are no market orders available</p>";
 
+  $link->close();
 }
 
 function print_rows($result, $link){

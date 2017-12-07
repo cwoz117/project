@@ -85,6 +85,6 @@ Vagrant.configure("2") do |config|
     echo -e "\nn\n\n\n\n\n " | mysql_secure_installation 2>/dev/null
   
     sudo mysql -u root < ddl.sql
-
+    sudo mysql -u root < demo_data.sql
   SHELL
 end

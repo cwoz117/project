@@ -2,6 +2,7 @@
   session_start();
   $user = $_POST["username"];
   $pass = $_POST["password"];  
+  $name = $_POST["name"];
   $wcb = $_POST["wcb"];
   $lic = $_POST["license"];
   $banking = $_POST["bankinfo"];
@@ -9,7 +10,8 @@
   require("global/db.php");  
 
   #Checking if username is used
-  $sql = "select $username from User;";
+  $sql = "select * from User where username = $user;";
+
   $result = $link->query($sql);
   
     if ($result->num_rows > 0) {
@@ -37,9 +39,9 @@
       }
   
       #Inserting entry into just driver for now
-      $sql = "insert into Driver(user_id, wcb_no, driver_license, banking_info, contractor_id) values ($userID, '$wcb', '$lic', '$banking', $cID);";
+      $sql = "insert into Driver(user_id, name, wcb_no, driver_license, banking_info, contractor_id) values ($userID, '$name', '$wcb', '$lic', '$banking', $cID);";
       if ($link->query($sql) == false) 
-        echo " motherfucker";
+         $_SESSION['flash'] = "Account could not be created properly";
 
     } 
   $link->close();

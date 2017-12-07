@@ -4,10 +4,10 @@
 
 
   switch($_SESSION['type']) {
-    case 1:
+    case 1: #company
       require('fragments/profile/_companyHome.php');
       break;
-    case 2:
+    case 2: #driver
       require('fragments/profile/_driverHome.php');
       break;
   }

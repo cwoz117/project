@@ -50,7 +50,6 @@
     }
   }
 
-
   //Info Codes
   //0 = payloads 
   //1 = workorders (all)
@@ -81,6 +80,7 @@
    // else 
 
     xmlhttp.send();
+
   }
 
   function createWorkorder() {
@@ -187,6 +187,7 @@
   <div class="w3-card w3-section w3-round-large">
     <div class="w3-container" style="min-height:400px;"> 
       <h2>Home</h2>
+
       <div class="w3-container w3-twothird" style="min-height:inherit;">
         <header class="w3-bar w3-card w3-round-large">
           <button class="w3-bar-item w3-button" onclick="switchView(0);"> Payloads </button>
@@ -202,6 +203,7 @@
         <div id="active_orders" class="w3-container w3-bar w3-padding w3-margin w3-card w3-round-large" style="min-height:inherit; display:none">
           <script type="text/javascript">getInfo(2);</script>
         </div>
+
       </div>
 
       <div class="w3-container w3-third" style="min-height:inherit;">

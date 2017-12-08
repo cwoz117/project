@@ -56,10 +56,17 @@ $userID = $_SESSION['userID'];
         echo $row["name"];
         ?>
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder=<?php echo $row["name"]?>>
-
+        <input type="text" id="name" name="name" value='<?php echo $row["name"]?>'>
+        <?php
+        require("global/db.php");
+        $sql = "SELECT profile_text FROM User WHERE user_id = '$userID';";
+        $result = $link->query($sql);
+        $row2 = $result->fetch_assoc();
+        $link->close();
+        echo $row["name"];
+        ?>
         <label>Profile description</label>
-        <textarea name="description" placeholder="Enter profile description..."></textarea>
+        <textarea name="description"><?php echo $row2["profile_text"]?></textarea>
 
         <input class="w3-button w3-blue w3-round w3-margin-top" type = "submit" value="Submit">
     </form>

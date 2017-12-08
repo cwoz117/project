@@ -16,13 +16,14 @@ if ($_POST["formname"] == "security") {
         $sql1 = "SELECT * FROM User WHERE username = '$un';";
         $result = $link->query($sql1);
         if ($result->num_rows > 0) {
-          $_SESSION['flash'] = "Username already in use";
+          $_SESSION['flash'] = "Username already in use | ";
           $_SESSION['flash_color'] = "w3-red";
 
         } else {
             $sql = "UPDATE User SET username='$un' WHERE user_id='$user'";
             if($link->query($sql)== true){
-                #$_SESSION['flash'] = "Username updated. ";
+                $_SESSION['flash'] = "Username updated.";
+                $_SESSION['flash_color'] = "w3-green";
             }else{
               $_SESSION['flash'] = "Username failed to update. ";
               $_SESSION['flash_color'] = "w3-red";
@@ -44,7 +45,8 @@ if ($_POST["formname"] == "security") {
             }else{
                 $sql = "UPDATE User SET password='$pw1' WHERE user_id='$user'";
                 if($link->query($sql)== true){
-                    #$_SESSION['flash'] .= "Password updated. ";
+                    $_SESSION['flash'] .= "Password updated. ";
+                    $_SESSION['flash_color'] = "w3-green";
                 }else{
                   $_SESSION['flash'] .= "Password failed to update. ";
                   $_SESSION['flash_color'] = "w3-red";
@@ -78,9 +80,11 @@ if ($_POST["formname"] == "security") {
 
                 if ($link->multi_query($sql) === true) {
                     $_SESSION['flash'] = "Profiled updated.";
+                    $_SESSION['flash_color'] = "w3-green";
                     $_SESSION['company_name'] = $name;
                 } else {
                     $_SESSION['flash'] = "Profile update failed.";
+                    $_SESSION['flash_color'] = "w3-red";
                 }
 
             } elseif ($_POST["formname"] == "business") {
@@ -89,9 +93,11 @@ if ($_POST["formname"] == "security") {
                 if($banking <> ""){
                     $sql = "UPDATE Company SET banking_info='$banking' WHERE user_id='$user';";
                     if($link->query($sql) === true){
-                        #$_SESSION['flash'] = "Information updated.";
+                        $_SESSION['flash'] = "Information updated.";
+                        $_SESSION['flash_color'] = "w3-green";
                     }else{
                         $_SESSION['flash'] = "Information update failed.";
+                        $_SESSION['flash_color'] = "w3-red";
                     }
                 }
             } else {
@@ -116,9 +122,11 @@ if ($_POST["formname"] == "security") {
                 }
                 if ($link->multi_query($sql) === true) {
                     $_SESSION['flash'] = "Profiled updated.";
+                    $_SESSION['flash_color'] = "w3-green";
                     $_SESSION['driverName'] = $name;
                 } else {
                     $_SESSION['flash'] = "Profile update failed.";
+                    $_SESSION['flash_color'] = "w3-red";
                 }
             } elseif ($_POST["formname"] == "business") {
                 $wcb = $_POST["wcb"];
@@ -133,16 +141,20 @@ if ($_POST["formname"] == "security") {
                 }
 
                 if ($link->multi_query($sql) === true) {
-                    #$_SESSION['flash'] = "Profiled updated: '$wcb','$banking'";
+                    $_SESSION['flash'] = "Profiled updated.";
+                    $_SESSION['flash_color'] = "w3-green";
                 } else {
                     $_SESSION['flash'] = "Profile update failed.";
+                    $_SESSION['flash_color'] = "w3-red";
                 }
 
             } else {
                 $_SESSION['flash'] = "Invalid form submitted to updateAccount.";
+                $_SESSION['flash_color'] = "w3-red";
             }
             break;
         case 3:     # employer
+            # --- TO DO: Employer acts almost exactly like Driver. To be completed for January launch! :D 
             if ($_POST["formname"] == "profile") {
                 $name = $_POST["name"];
                 $des = $_POST["description"];

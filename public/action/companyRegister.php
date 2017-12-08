@@ -13,7 +13,7 @@ $result = $link->query($sql);
 
 if ($result->num_rows > 0) {
   $_SESSION['flash'] = "That Username is already in use";
-  $_SESSION['flash_color'] = " w3-red";
+  $_SESSION['flash_color'] = "w3-red";
   header("Location: ../index.php");
   $link->close();
 	exit();
@@ -26,12 +26,11 @@ $sql = "insert into User (username, password, acc_type) values ('$user', '$pass'
 $userID;
 if ($link->query($sql) === true) {
 	$userID = (int) $link->insert_id;
+
 } else {
   $_SESSION['flash'] = "This company could not be entered into the database. Error: $link->error";
-  $_SESSION['flash_color'] = " w3-red";
+  $_SESSION['flash_color'] = "w3-red";
 }
-
-
 
 $sql = "insert into Company (user_id, name, banking_info, address) values ($userID, '$compName', $bank, '$addr');";
 

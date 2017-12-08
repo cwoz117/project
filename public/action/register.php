@@ -16,7 +16,7 @@
   
     if ($result->num_rows > 0) {
       $_SESSION['flash'] = "Username already in use";
-      $_SESSION['flash_color'] = " w3-red";
+      $_SESSION['flash_color'] = "w3-red";
     } else {
 
       $userID;
@@ -40,6 +40,7 @@
       }
   
       #Inserting entry into just driver for now
+
       $sql = "insert into Driver(user_id, name, wcb_no, driver_license, banking_info, contractor_id) values ('$userID', '$name', '$wcb', '$lic', '$banking', '$cID');";
       if ($link->query($sql) == false) {
          $_SESSION['flash_color'] = " w3-red";
@@ -52,7 +53,6 @@
       } else {
          $_SESSION['flash_color'] = " w3-green";
          $_SESSION['flash'] = "Account successfully created";
- 
       }
     } 
   $link->close();

@@ -188,7 +188,6 @@
             <i class='fa fa-plus-square-o'></i>
           </li>
         </ul>
-        <p class="w3-red w3-center"> <?php echo $_SESSION['flash']; $_SESSION['flash'] = "" ?> </p>
       </div>
     </div>
   </div>

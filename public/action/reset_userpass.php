@@ -11,7 +11,8 @@ $sql = "select * from User where username = '$user';";
 $result = $link->query($sql);
 if ($result->num_rows == 0) {
 	echo "Username doesn't exists";
-        $_SESSION['flash'] = "Username does not exist";
+  $_SESSION['flash'] = "Username does not exist";
+  $_SESSION['flash_color'] = "w3-red";
 	exit();
 }
 
@@ -24,6 +25,7 @@ if ($link->query($sql) === true) {
 } else {
 	echo "Failure <br>";
 	$_SESSION['flash'] = "Password could not be reset";
+  $_SESSION['flash_color'] = "w3-red";
 }
  
 

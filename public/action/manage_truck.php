@@ -39,7 +39,8 @@ if ($command == 0) {
 
 	if ($result->num_rows > 0) {
 		echo "Check failed <br>";
-		$_SESSION['flash'] = "Registration number is already in use";
+    $_SESSION['flash'] = "Registration number is already in use";
+    $_SESSION['flash_color'] = "w3-red";
 		exit();	
 	}
 	##################################################
@@ -52,6 +53,7 @@ if ($command == 0) {
 	} else {
 		echo "Failed";
 		$_SESSION['flash'] = "Error: Truck could not be added";
+    $_SESSION['flash_color'] = "w3-red";
 	}
 } else {
 #Command is to edit
@@ -64,6 +66,7 @@ if ($command == 0) {
 	} else {
 		echo "Failure";
 		$_SESSION['flash'] = "Error: Truck could not be modified";
+    $_SESSION['flash_color'] = "w3-red";
 	}
 }
 $link->close();

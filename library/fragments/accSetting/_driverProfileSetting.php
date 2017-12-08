@@ -20,11 +20,6 @@
         border-radius: 4px;
         box-sizing: border-box;
         resize: none;
-<<<<<<< HEAD
-=======
-        rows="4";
-        cols="50";
->>>>>>> 01165a85c4798dc21256812490d29d26ddc59458
     }
 
     #inputForm {
@@ -60,10 +55,10 @@ $userID = $_SESSION['userID'];
         $link->close();
         ?>
         <label for="name">Full name</label>
-        <input type="text" id="name" name="fullname" placeholder=<?php echo $row["name"]?>>
+        <input type="text" id="name" name="fullname" maxlength="250" placeholder=<?php echo $row["name"]?>>
 
         <label>Profile description</label>
-        <textarea name="description" placeholder="Enter profile description..."></textarea>
+        <textarea name="description" maxlength="250" placeholder="Enter profile description..."></textarea>
 
         <!-- SQL Query to get driver license from database-->
         <?php
@@ -74,7 +69,7 @@ $userID = $_SESSION['userID'];
         $link->close();
         ?>
         <label for="driverLicense">Driver license</label>
-        <input type="text" id="driverLicense" name="driverLicense" maxlength="12" placeholder=<?php echo $row["driver_license"];?>
+        <input type="text" id="driverLicense" name="driverLicense" pattern=".{12,12}" title="License must be 12 characters long" placeholder=<?php echo $row["driver_license"];?>
         >
 
         <input class="w3-button w3-blue w3-round w3-margin-top" type = "submit" value="Submit">

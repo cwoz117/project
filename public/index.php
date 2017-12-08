@@ -25,11 +25,11 @@
     if (document.getElementById(passN).value == document.getElementById(rePassN).value) {
        document.getElementById(buttonName).disabled = false;
        document.getElementById(error).style.color="#00FF00";
-       document.getElementById(error).value = "Password match";	
+       document.getElementById(error).innerHTML = "Password match";	
     } else {
        document.getElementById(buttonName).disabled = true;
        document.getElementById(error).style.color="#FF0000";
-       document.getElementById(error).value = "Passwords do not match";
+       document.getElementById(error).innerHTML = "Passwords do not match";
     }
   }  
   </script>
@@ -115,7 +115,7 @@
       <label>Banking Information:</label> 
       <input class="w3-input w3-round" type="text" name="bankinfo" pattern="[0-9]+" required>
       <input class="w3-button w3-blue w3-round w3-margin-top" type="submit" id="submitD" value="Register">
-      <input class="w3-input w3-round" type="text" id="pwd_error" readonly>
+      <p class="w3-round" type="text" id="pwd_error"></p>
     </form>
 
     <form id="register_company" class="form w3-container w3-padding" action="action/companyRegister.php" method="post" style="display:none">
@@ -132,7 +132,7 @@
       <label>Address:</label> 
       <input class="w3-input w3-round" type="text" name="address" required>
       <input class="w3-button w3-blue w3-round w3-margin-top" id="submitC" type="submit" value="Register">
-      <input class="w3-input w3-round" type="text" id="pwd_error2" readonly>
+      <p class="w3-round" type="text" id="pwd_error2"></p>
     </form> 
   </div>
 </div>

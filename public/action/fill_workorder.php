@@ -8,6 +8,7 @@ function get_workorder_details()
 
     $sql = "SELECT contractor_id FROM Driver WHERE user_id = '$userID';";
     $result = $link->query($sql);
+    echo "<div style=\"overflow-x:auto;\">";
     echo "<table class=\"w3-table-all w3-hoverable\">
                 <tr class=\"w3-blue\">
                     <th>Job Number</th>
@@ -33,7 +34,7 @@ function get_workorder_details()
         }
     }
 
-    echo "</table>";
+    echo "</table></div>";
     $link->close();
 
 }
@@ -59,23 +60,24 @@ function print_rows($result, $link){
         }
 
         # button
-        echo "<tr id='w$i' onclick=\"assignWoID('$i')\">";
+        echo "<div id='w$i' onclick=\"assignWoID('$i')\">";
+        #echo "<tr id='w$i' onclick=\"assignWoID('$i')\">";
         #echo "class=\"w3-btn w3-block w3-left-align w3-round w3-border w3-white\">";
         #echo "<span>$workorderNo $payloadID $companyName <span class='w3-align-right'>$contractPrice</span></span></button>";
-        echo "<td>$workorderNo</td>
+        echo "<tr><td>$workorderNo</td>
                   <td>$payloadID</td>
                   <td>$companyName</td>
                   <td>$contractPrice</td></tr>";
 
 
         # hidden
-        echo "<div id=wo'$i' class='w3-container w3-hide'>";
+        echo "<div id='wo$i' class='w3-container w3-hide'>";
         echo "<div class='w3-container w3-border w3-padding w3-white'>";
         echo "<h3>Order details</h3>";
         echo "<p>Pickup Address: $pickupAddress<br>
                  Dropoff Address: $dropoffAddress<br>
                  Deadline: $deadline</p>";
-        echo "</div></div>";
+        echo "</div></div></div>";
 
 
         $i++;

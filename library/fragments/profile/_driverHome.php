@@ -37,13 +37,13 @@
     }
 
     function assignWoID(id) {
-        var y = document.getElementById("wo" + id);
-        var x = document.getElementById(id);
+        //var y = document.getElementById("wo" + id);
+        var x = document.getElementById("wo" + id);
         if (x.className.indexOf("w3-show") == -1) {
-            y.className += " w3-card-4";
+        //    y.className += " w3-card-4";
             x.className += " w3-show";
         } else {
-            y.className = y.className.replace(" w3-card-4", "");
+         //   y.className = y.className.replace(" w3-card-4", "");
             x.className = x.className.replace(" w3-show", "");
         }
     }

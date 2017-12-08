@@ -21,7 +21,7 @@ if ($_POST["formname"] == "security") {
         } else {
             $sql = "UPDATE User SET username='$un' WHERE user_id='$user'";
             if($link->query($sql)== true){
-                $_SESSION['flash'] = "Username updated. ";
+                #$_SESSION['flash'] = "Username updated. ";
             }else{
                 $_SESSION['flash'] = "Username failed to update. ";
             }
@@ -29,9 +29,9 @@ if ($_POST["formname"] == "security") {
     }
 
     if($pw1 <> "" && $pw2 <> ""){
-        if($pw2 <> $pw1){
-            $_SESSION['flash'].="Password did not match. Please re-enter.";
-        }else{
+       # if($pw2 <> $pw1){
+       #     $_SESSION['flash'].="Password did not match. Please re-enter.";
+       # }else{
             # check existing pw
             $sql2 = "SELECT * FROM User WHERE user_id='$user';";
             $result=$link->query($sql2);
@@ -41,14 +41,16 @@ if ($_POST["formname"] == "security") {
             }else{
                 $sql = "UPDATE User SET password='$pw1' WHERE user_id='$user'";
                 if($link->query($sql)== true){
-                    $_SESSION['flash'] .= "Password updated. ";
+                    #$_SESSION['flash'] .= "Password updated. ";
                 }else{
                     $_SESSION['flash'] .= "Password failed to update. ";
                 }
             }
-        }
+       # }
     }
     #==================================
+    $link->close();
+    header("Location: ../security_account_settings.php");
 
 }else {
     switch ($accType) {
@@ -71,7 +73,7 @@ if ($_POST["formname"] == "security") {
                 }
 
                 if ($link->multi_query($sql) === true) {
-                    $_SESSION['flash'] = "Profiled updated.";
+                    #$_SESSION['flash'] = "Profiled updated.";
                 } else {
                     $_SESSION['flash'] = "Profile update failed.";
                 }
@@ -82,7 +84,7 @@ if ($_POST["formname"] == "security") {
                 if($banking <> ""){
                     $sql = "UPDATE Company SET banking_info='$banking' WHERE user_id='$user';";
                     if($link->query($sql) === true){
-                        $_SESSION['flash'] = "Information updated.";
+                        #$_SESSION['flash'] = "Information updated.";
                     }else{
                         $_SESSION['flash'] = "Information update failed.";
                     }
@@ -108,7 +110,7 @@ if ($_POST["formname"] == "security") {
                     $sql .= "UPDATE Driver SET driver_license='$license' WHERE user_id = '$user';";
                 }
                 if ($link->multi_query($sql) === true) {
-                    $_SESSION['flash'] = "Profiled updated.";
+                    #$_SESSION['flash'] = "Profiled updated.";
                 } else {
                     $_SESSION['flash'] = "Profile update failed.";
                 }
@@ -125,7 +127,7 @@ if ($_POST["formname"] == "security") {
                 }
 
                 if ($link->multi_query($sql) === true) {
-                    $_SESSION['flash'] = "Profiled updated: '$wcb','$banking'";
+                    #$_SESSION['flash'] = "Profiled updated: '$wcb','$banking'";
                 } else {
                     $_SESSION['flash'] = "Profile update failed.";
                 }
@@ -148,7 +150,7 @@ if ($_POST["formname"] == "security") {
 
                 }
                 if($link->query($sql) === true){
-                    $_SESSION['flash'] = "Profile updated.";
+                    #$_SESSION['flash'] = "Profile updated.";
                 }else{
                     $_SESSION['flash'] = "Profile update failed.";
                 }
@@ -165,7 +167,7 @@ if ($_POST["formname"] == "security") {
                 }
 
                 if ($link->multi_query($sql) === true) {
-                    $_SESSION['flash'] = "Information updated.";
+                    #$_SESSION['flash'] = "Information updated.";
                 } else {
                     $_SESSION['flash'] = "Information update failed.";
                 }

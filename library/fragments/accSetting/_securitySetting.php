@@ -37,6 +37,21 @@
     }
 
 </style>
+
+<script>
+    function check_pass(buttonName, passN, rePassN, error) {
+        if (document.getElementById(passN).value == document.getElementById(rePassN).value) {
+            document.getElementById(buttonName).disabled = false;
+            document.getElementById(error).style.color="#00FF00";
+            document.getElementById(error).value = "Password match";
+        } else {
+            document.getElementById(buttonName).disabled = true;
+            document.getElementById(error).style.color="#FF0000";
+            document.getElementById(error).value = "Passwords do not match";
+        }
+    }
+</script>
+
 <body>
 <?php
 session_start();
@@ -65,12 +80,13 @@ session_start();
         $link->close();
         ?>
         <label for="pw">New password</label>
-        <input type="text" id = "pw" name="pw" placeholder="">
+        <input type="text" id = "pw" name="pw" onblur="check_pass('updateSecurityButton','pw', 'pw2', 'pwd_error')" pattern=".{4,}" title="password must be longer that 4 characters">
 
         <label for="pw2">Retype password</label>
-        <input type="text" id = "pw2" name="pw2" placeholder="">
+        <input type="text" id = "pw2" name="pw2" onblur="check_pass('updateSecurityButton','pw', 'pw2', 'pwd_error')" pattern=".{4,}" title="password must be longer that 4 characters">
 
-        <input class="w3-button w3-blue w3-round w3-margin-top" type = "submit" value="Submit">
+        <input class="w3-input w3-light-grey w3-border-0" type="text" id="pwd_error" readonly>
+        <input id="updateSecurityButton" class="w3-button w3-blue w3-round w3-margin-top" type = "submit" value="Submit">
         <button type="submit" formaction="action/deleteAccount.php" class="w3-button w3-red w3-round w3-margin-top w3-right" >Delete Account</button>
     </form>
 </div>

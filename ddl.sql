@@ -141,10 +141,11 @@ CREATE TABLE PolicyRequirements(
 
 
 CREATE TABLE AcceptedOrders(
-	company_id		INT UNSIGNED 	NOT NULL,
-	payload_id		INT UNSIGNED	NOT NULL, 
+	company_id		INT UNSIGNED	NOT NULL,
+	payload_id		INT UNSIGNED	NOT NULL,
 	workorder_no		INT UNSIGNED	NOT NULL, 
-	contractor_id		INT UNSIGNED	NOT NULL,
+	contractor_id		INT UNSIGNED	NOT NULL, 
+
 
 	CONSTRAINT PK_acceptedOrders PRIMARY KEY (company_id, payload_id, workorder_no, contractor_id),
 	CONSTRAINT FK_acptOrders FOREIGN KEY (company_id, payload_id, workorder_no) REFERENCES Workorder(company_id, payload_id, workorder_no)

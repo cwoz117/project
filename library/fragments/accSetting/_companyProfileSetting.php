@@ -53,7 +53,6 @@ $userID = $_SESSION['userID'];
         $result = $link->query($sql);
         $row = $result->fetch_assoc();
         $link->close();
-        echo $row["name"];
         ?>
         <label for="name">Company Name</label>
         <input type="text" id="name" name="companyName" maxlength="250" value='<?php echo $row["name"]?>'>

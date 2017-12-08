@@ -54,7 +54,7 @@ session_start();
         $link->close();
         ?>
         <label for="wcb">WCB Number</label>
-        <input type="text" id="wcb" name="wcb" pattern=".{4,}" title="WCB number must be longer that 4 characters" placeholder=<?php echo $result["wcb_no"]?>>
+        <input type="text" id="wcb" name="wcb" pattern=".{4,}" title="WCB number must be longer that 4 characters" value='<?php echo $result["wcb_no"]?>'>
 
         <?php
         require("global/db.php");
@@ -64,7 +64,7 @@ session_start();
         $link->close();
         ?>
         <label for="banking">Banking Information</label>
-        <input type="text" id = "banking" name="banking" pattern=".{4,}" title="Bank info must be longer that 4 characters" placeholder=<?php echo $result["banking_info"]?>>
+        <input type="text" id = "banking" name="banking" pattern=".{4,}" title="Bank info must be longer that 4 characters" value='<?php echo $result["banking_info"]?>'>
 
         <input class="w3-button w3-blue w3-round w3-margin-top" type = "submit" value="Submit">
     </form>

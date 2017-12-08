@@ -56,23 +56,20 @@ $userID = $_SESSION['userID'];
         echo $row["name"];
         ?>
         <label for="name">Company Name</label>
-        <input type="text" id="name" name="companyName" maxlength="250" placeholder=<?php echo $row["name"]?>>
+        <input type="text" id="name" name="companyName" maxlength="250" value='<?php echo $row["name"]?>'>
 
-
-        <label>Company description</label>
-        <textarea name="description" maxlength="250" placeholder="Enter profile description..."></textarea>
-
-        <!-- SQL Query to get driver license from database-->
         <?php
         require("global/db.php");
-        $sql = "SELECT * FROM Company WHERE user_id = '$userID';";
+        $sql = "SELECT profile_text FROM User WHERE user_id = '$userID';";
         $result = $link->query($sql);
-        $row = $result->fetch_assoc();
+        $row2 = $result->fetch_assoc();
         $link->close();
         ?>
+        <label>Company description</label>
+        <textarea name="description" maxlength="250"><?php echo $row2['profile_text']?></textarea>
+
         <label for="address">Company Address</label>
-        <input type="text" id="address" name="address" placeholder=<?php echo $row["address"];?>
-        >
+        <input type="text" id="address" name="address" value='<?php echo $row["address"];?>'>
 
         <input class="w3-button w3-blue w3-round w3-margin-top" type = "submit" value="Submit">
     </form>

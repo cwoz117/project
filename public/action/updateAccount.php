@@ -154,7 +154,7 @@ if ($_POST["formname"] == "security") {
             }
             break;
         case 3:     # employer
-            # --- TO DO: Employer acts almost exactly like Driver. To be completed for January launch! :D 
+            # --- TO DO: Employer acts almost exactly like Driver. To be completed for January launch! :D
             if ($_POST["formname"] == "profile") {
                 $name = $_POST["name"];
                 $des = $_POST["description"];

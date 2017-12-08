@@ -20,9 +20,11 @@
   </div>
 </nav>
 
-<div class="w3-center w3-panel w3-red">
 <?php 
+  $level = $_SESSION['flash_color'];
+  echo "<div class='w3-center w3-panel $level'>";
   echo $_SESSION['flash']; 
+  echo "</div>";
   $_SESSION['flash'] = "";
+  $_SESSION['flash_color'] = "w3-white"
 ?>
-</div>

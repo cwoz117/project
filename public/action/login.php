@@ -36,6 +36,7 @@
     $redirect = "../home.php";
   } else {
     $_SESSION['flash'] = "Invalid Password";
+    $_SESSION['flash_color'] = "w3-red";
     $redirect = "../index.php";
   }
   $link->close();

@@ -12,6 +12,7 @@ if ($link->query($sql)==true) {
 } else{
     $link->close();
     $_SESSION['flash'] = "Failed to delete account.";
+    $_SESSION['flash_color'] = "w3-red";
     header("Location: ../security_account_settings.php");
 }
 

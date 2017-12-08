@@ -23,7 +23,8 @@ if ($command == 0) {
 	$sql = "insert into Workorder (company_id, payload_id, workorder_no, pickup_address, dropoff_address, start_time, deadline, completed, contract_price) values ($userID, $payID, '$woNum', '$pickup', '$dropoff', '$start', '$dead', $completed, '$price');";
 
 	if ($link->query($sql) === false) {
-		$_SESSION['flash'] = "Could not create new workorder";
+    $_SESSION['flash'] = "Could not create new workorder";
+    $_SESSION["flash_color"] = "w3-red";
 	}
 
 //Edit workorder
@@ -44,10 +45,12 @@ if ($command == 0) {
 
 	if ($result->num_rows > 0) {
 		$_SESSION['flash'] = "Edit failed: Cannot edit accepted workorder";
+    $_SESSION["flash_color"] = "w3-red";
 	} else {
 		$sql = "update Workorder set pickup_address = '$pickup', dropoff_address = '$dropoff', start_time = '$start', deadline = '$dead', completed = $completed, contract_price = '$price' where company_id = $userID and payload_id = $payID and workorder_no = $woNum;";	
 		if ($link->query($sql) === false) 
 			$_SESSION['flash'] = "Edit failed: Could not edit";
+    $_SESSION["flash_color"] = "w3-red";
 	}
 
 //Deletion workorder	
@@ -58,6 +61,7 @@ if ($command == 0) {
 	$result = $link->query($sql);
 	if ($result->num_rows > 0) {
 		$_SESSION['flash'] = "Deletion failed: Cannot delete accepted workorder";
+    $_SESSION["flash_color"] = "w3-red";
 	} else {
 		$woNum = $_POST['workID'];
 		$payID = $_POST['payID'];
@@ -65,6 +69,7 @@ if ($command == 0) {
 		
 		if ($link->query($sql) === false) 
 			$_SESSION['flash'] = "Deletion failed: Could not delete";
+    $_SESSION["flash_color"] = "w3-red";
 	}
 }
 

@@ -16,14 +16,16 @@ if ($_POST["formname"] == "security") {
         $sql1 = "SELECT * FROM User WHERE username = '$un';";
         $result = $link->query($sql1);
         if ($result->num_rows > 0) {
-            $_SESSION['flash'] = "Username already in use";
+          $_SESSION['flash'] = "Username already in use";
+          $_SESSION['flash_color'] = "w3-red";
 
         } else {
             $sql = "UPDATE User SET username='$un' WHERE user_id='$user'";
             if($link->query($sql)== true){
                 #$_SESSION['flash'] = "Username updated. ";
             }else{
-                $_SESSION['flash'] = "Username failed to update. ";
+              $_SESSION['flash'] = "Username failed to update. ";
+              $_SESSION['flash_color'] = "w3-red";
             }
         }
     }
@@ -37,13 +39,15 @@ if ($_POST["formname"] == "security") {
             $result=$link->query($sql2);
             $row = $result->fetch_row();
             if($row[2]==$pw1){
-                $_SESSION['flash'].="New password must be different from old password";
+              $_SESSION['flash'].="New password must be different from old password";
+              $_SESSION['flash_color'] = "w3-red";
             }else{
                 $sql = "UPDATE User SET password='$pw1' WHERE user_id='$user'";
                 if($link->query($sql)== true){
                     #$_SESSION['flash'] .= "Password updated. ";
                 }else{
-                    $_SESSION['flash'] .= "Password failed to update. ";
+                  $_SESSION['flash'] .= "Password failed to update. ";
+                  $_SESSION['flash_color'] = "w3-red";
                 }
             }
        # }

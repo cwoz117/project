@@ -11,7 +11,8 @@ if ($command == 2) {
 	$sql = "delete from Payload where payload_id = $payID;";
 	
 	if ($link->query($sql) === false) {
-		$_SESSION['flash'] = "Unable to delete payload";
+    $_SESSION['flash'] = "Unable to delete payload";
+    $_SESSION['flash_color'] = "w3-red";
 	}
 
 } else {
@@ -26,7 +27,8 @@ if ($command == 2) {
 	if ($command == 0) {
 		$sql = "insert into Payload(company_id, manifest, asset_value, cargo_type, gross_weight, contact_info) values ($userID, '$manifest', $assetV, '$cargo', $weight, '$contact');";
 		if ($link->query($sql) === false) {
-			$_SESSION['flash'] = "Unable to add payload";
+      $_SESSION['flash'] = "Unable to add payload";
+      $_SESSION['flash_color'] = "w3-red";
 		}
 	//Edit query
 	} else {
@@ -34,6 +36,7 @@ if ($command == 2) {
 		$sql = "update Payload set manifest='$manifest', asset_value='$assetV', cargo_type='$cargo', gross_weight='$weight', contact_info='$contact' where payload_id = $payID";
 		if ($link->query($sql) === false) {
 			$_SESSION['flash'] = "Payload edit failed";
+      $_SESSION['flash_color'] = "w3-red";
 		}
 	}
 }

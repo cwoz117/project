@@ -18,6 +18,7 @@ if($link->query($sql)==true){
     $link->close();
     # Error
     $_SESSION['flash'] = "Error: could not complete order.";
+    $_SESSION['flash_color'] = "w3-red";
     header("Location: ../home.php");
 }
 

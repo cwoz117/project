@@ -403,3 +403,26 @@
   </div>
 </div>
 
+<script>
+  var dWorkorder = document.getElementById('deleteW');
+  var mWorkorder = document.getElementById('manageWO');
+  var dPayload = document.getElementById('deleteP');
+  var mPayload = document.getElementById('manage_payload');
+  var dLocation = document.getElementById('deleteL');
+  var mLocation = document.getElementById('manage_location');
+  window.onclick = function(event) {
+    if (event.target == dWorkorder) {
+      dWorkorder.style.display = "none";
+    } else if (event.target == mWorkorder) {
+      mWorkorder.style.display = "none";
+    } else if (event.target == dPayload) {
+      dPayload.style.display = "none";
+    } else if (event.target == mPayload) {
+      mPayload.style.display = "none";
+    } else if (event.target == dLocation) {
+      dLocation.style.display = "none";
+    } else if (event.target == mLocation) {
+      mLocation.style.display = "none";
+    }
+  }
+</script>

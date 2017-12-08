@@ -2,13 +2,13 @@
 function get_market_details(){
 
   $sql = "select * 
-          from Workorder 
-          where completed = false and workorder_no not in 
+          from Workorder as w, Payload as p 
+          where completed = false and p.payload_id = w.payload_id and workorder_no not in 
             (select workorder_no 
              from AcceptedOrders as a 
-             where a.company_id = company_id and 
-                                  a.payload_id = payload_id and 
-                                  a.workorder_no = workorder_no);";
+             where a.company_id = w.company_id and 
+                                  a.payload_id = w.payload_id and 
+                                  a.workorder_no = w.workorder_no);";
     require('global/db.php');
     $result = $link->query($sql);
 

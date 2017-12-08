@@ -33,7 +33,7 @@ if ($command == 2) {
 		$sql = "update Location set address = '$address', contact_number = '$contact' where location_id = $locID;";
 		if ($link->query($sql) === false) {
       $_SESSION['flash'] = "Location edit failed";
-      $_SESSION['flash_color'] = "w3-red"
+      $_SESSION['flash_color'] = "w3-red";
 		}
 	}
 }

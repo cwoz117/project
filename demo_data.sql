@@ -36,6 +36,6 @@ insert into Contractor VALUES(1),(2);
 insert into Driver VALUES(4, "Boba Fett", 12121212, 1111111111, 1357924, 1),
                          (5, "Han Solo", 34343434, 2222222222, 2468102, 2);
 
-insert into Truck VALUES(1234567890, 1, "Mandalore", "9999", "B0UNTY", "Firespray", "31", "1999-01-01", "AB", "01"),
-                        (0987654321, 2, "Corellian", "4444", "SMU66L3R", "YT-1300F", "492727ZED", "2000-01-01", "AB", "10");
+insert into Truck VALUES(1234567890, 1, "Mandalore", "9999", "B0UNTY", "Firespray", "31", "99", "AB", "01"),
+                        (0987654321, 2, "Corellian", "4444", "SMU66L3R", "YT-1300F", "492727ZED", "00", "AB", "10");
 

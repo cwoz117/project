@@ -25,11 +25,11 @@
     if (document.getElementById(passN).value == document.getElementById(rePassN).value) {
        document.getElementById(buttonName).disabled = false;
        document.getElementById(error).style.color="#00FF00";
-       document.getElementById(error).value = "Password match";	
+       document.getElementById(error).innerHTML = "Password match";	
     } else {
        document.getElementById(buttonName).disabled = true;
        document.getElementById(error).style.color="#FF0000";
-       document.getElementById(error).value = "Passwords do not match";
+       document.getElementById(error).innerHTML = "Passwords do not match";
     }
   }  
   </script>
@@ -94,7 +94,7 @@
 </div>
 
 <div id="modal" class="w3-modal">
-  <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width:372px">
+  <div class="w3-modal-content w3-card-4 w3-round-large" style="max-width:40%">
     <header class="w3-bar w3-blue w3-round-large">
       <button class="w3-bar-item w3-button w3-blue" onclick="openForm('register_driver')">Driver Registration</button>
       <button class="w3-bar-item w3-button w3-blue" onclick="openForm('register_company')">Company Registration</button>
@@ -115,7 +115,7 @@
       <label>Banking Information:</label> 
       <input class="w3-input w3-round" type="text" name="bankinfo" pattern="[0-9]+" required>
       <input class="w3-button w3-blue w3-round w3-margin-top" type="submit" id="submitD" value="Register">
-      <input class="w3-input w3-round" type="text" id="pwd_error" readonly>
+      <p class="w3-round" type="text" id="pwd_error"></p>
     </form>
 
     <form id="register_company" class="form w3-container w3-padding" action="action/companyRegister.php" method="post" style="display:none">
@@ -132,7 +132,7 @@
       <label>Address:</label> 
       <input class="w3-input w3-round" type="text" name="address" required>
       <input class="w3-button w3-blue w3-round w3-margin-top" id="submitC" type="submit" value="Register">
-      <input class="w3-input w3-round" type="text" id="pwd_error2" readonly>
+      <p class="w3-round" type="text" id="pwd_error2"></p>
     </form> 
   </div>
 </div>

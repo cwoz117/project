@@ -39,7 +39,7 @@ if ($command == 0) {
 	$price = $_POST['price'];
 
 	//Check if workorder has been accepted query --> Cannot edit?
-	$sql = "select * from Workorder where company_id, payload_id, workorder_no in (select * from AcceptedOrders);";
+	$sql = "select * from Workorder where payload_id = $payID and company_id = $userID and workorder_no = $woNum and workorder_no in (select a.workorder_no from AcceptedOrders where a.company_id = company_id and a.payload_id = payload_id);";
 	$result = $link->query($sql);
 
 	if ($result->num_rows > 0) {
@@ -54,9 +54,8 @@ if ($command == 0) {
 } else {
 
 	//Check if workorder has been accepted query --> Cannot delete?
-	$sql = "select * from Workorder where company_id, payload_id, workorder_no in (select * from AcceptedOrders);";
+	$sql = "select * from Workorder where payload_id = $payID and company_id = $userID and workorder_no = $woNum and workorder_no in (select a.workorder_no from AcceptedOrders where a.company_id = company_id and a.payload_id = payload_id);";
 	$result = $link->query($sql);
-
 	if ($result->num_rows > 0) {
 		$_SESSION['flash'] = "Deletion failed: Cannot delete accepted workorder";
 	} else {

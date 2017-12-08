@@ -11,10 +11,10 @@
   $sql = "insert into AcceptedOrders VALUES ($company_id, $payload_id, $workorder_no, $contractor_id);";
   if ($result = $link->query($sql) === true){
     $_SESSION['flash'] = "Accepted the Contract";
+
     $_SESSION['flash_color'] = "w3-green";
   } else {
     $_SESSION['flash'] = "An Error occured a: $company_id, b: $payload_id, c: $workorder_no, d: $contractor_id\n$link->error";
     $_SESSION['flash_color'] = "w3-red";
   }
-  
 ?>

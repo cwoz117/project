@@ -78,7 +78,7 @@ function print_rows($result, $link){
         echo "<div>";
         # button for completing order
         echo "<form class=\"w3-container w3-padding\" action=\"action/complete_workorder.php\" method=\"post\">";
-        echo "<input  id='cB$i' class=\"w3-button w3-green w3-right-align w3-margin-top\" style=\"width=20%\" type = \"submit\" value=\"Complete\">";
+        echo "<input  id='cB$i' class=\"w3-button w3-green w3-right-align w3-margin-top\" style=\"width=20%\" type = \"submit\" value=\"Complete\"></form>";
 
         # button for showing order details
         echo "<button id='b$i' onclick=\"myFunction('$i')\"";
@@ -163,7 +163,7 @@ function print_rows($result, $link){
                  Cargo Type: $cargoType<br>
                  Gross Weight: $weight<br>
                  For more information, please contact: $contactInfo</p>";
-        echo "</div></div></form></div>";
+        echo "</div></div></div>";
 
         $i++;
     }

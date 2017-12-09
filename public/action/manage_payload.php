@@ -8,11 +8,12 @@ $command = $_POST['instruct'];
 //Delete = 2
 if ($command == 2) {
 	$payID = $_POST['payID'];
-	$sql = "delete from Payload where payload_id = $payID;";
+	echo "$payID is payID";
+	$sql = "delete from Payload where payload_id = '$payID';";
 	
 	if ($link->query($sql) === false) {
-    $_SESSION['flash'] = "Unable to delete payload";
-    $_SESSION['flash_color'] = "w3-red";
+		$_SESSION['flash'] = "Unable to delete payload";
+		$_SESSION['flash_color'] = "w3-red";
 	}
 
 } else {
@@ -41,6 +42,6 @@ if ($command == 2) {
 	}
 }
 
-header("Location: ../home.php");
+//header("Location: ../home.php");
 $link->close();
 ?>

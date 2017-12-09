@@ -137,7 +137,7 @@
     else if (infoCode == 1) 
       xmlhttp.open("GET", "action/fill_workorders.php", true);
     else if (infoCode == 2) 
-      xmlhttp.open("GET", "action/fill_active_orders.php", true);
+      xmlhttp.open("GET", "action/badFill_activeWO.php", true);
    else 
       xmlhttp.open("GET", "action/fill_locations.php", true);     
 

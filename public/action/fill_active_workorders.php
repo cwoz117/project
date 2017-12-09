@@ -76,22 +76,24 @@ function print_rows($result, $link){
     while ($row = $result->fetch_assoc()){
         # button
         echo "<div>";
+        $workorderNo = $row["workorder_no"];
+        $payloadID = $row["payload_id"];
+        $price = $row["contract_price"];
+        $companyID = $row["company_id"];
+		
+		
         # button for completing order
         echo "<form class=\"w3-container w3-padding\" action=\"action/complete_workorder.php\" method=\"post\">";
+        echo "<input type=\"hidden\" name=\"companyID\" value='$companyID'/>";
+        echo "<input type=\"hidden\" name=\"payloadID\" value='$payloadID'/>";
+        echo "<input type=\"hidden\" name=\"woNo\" value='$workorderNo'/>";
+        echo "<input type=\"hidden\" name=\"button\" value='cB$i'/>";
         echo "<input  id='cB$i' class=\"w3-button w3-green w3-right-align w3-margin-top\" style=\"width=20%\" type = \"submit\" value=\"Complete\"></form>";
 
         # button for showing order details
         echo "<button id='b$i' onclick=\"myFunction('$i')\"";
         echo "class=\"w3-btn w3-block w3-left-align w3-round w3-border w3-white\" style=\"width=70%\">";
-        $workorderNo = $row["workorder_no"];
-        $payloadID = $row["payload_id"];
-        $price = $row["contract_price"];
-        $companyID = $row["company_id"];
 
-        echo "<input type=\"hidden\" name=\"companyID\" value='$companyID'/>";
-        echo "<input type=\"hidden\" name=\"payloadID\" value='$payloadID'/>";
-        echo "<input type=\"hidden\" name=\"woNo\" value='$workorderNo'/>";
-        echo "<input type=\"hidden\" name=\"button\" value='cB$i'/>";
 
         # Find the name of contractor.
         $contractorName = $row["contractor_id"];

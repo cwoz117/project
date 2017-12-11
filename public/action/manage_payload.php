@@ -42,6 +42,6 @@ if ($command == 2) {
 	}
 }
 
-//header("Location: ../home.php");
+header("Location: ../home.php");
 $link->close();
 ?>
